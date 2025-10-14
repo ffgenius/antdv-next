@@ -1,22 +1,17 @@
-import type { SlotsType } from 'vue'
+import type { App, SlotsType } from 'vue'
 import type { ConfigConsumerProps, ThemeConfig } from './context'
-import type {
-  ConfigProviderEmits,
-  ConfigProviderProps,
-  ConfigProviderSlots,
-} from './define.ts'
+import type { ConfigProviderEmits, ConfigProviderProps, ConfigProviderSlots } from './define'
 import { createTheme } from '@antdv-next/cssinjs'
 import defu from 'defu'
-import {
-  computed,
-  defineComponent,
-} from 'vue'
+import { computed, defineComponent } from 'vue'
 import { defaultTheme, DesignTokenProvider } from '../theme/context.ts'
 import defaultSeedToken from '../theme/themes/seed'
 import { defaultIconPrefixCls, useConfig, useConfigProvider } from './context'
 import { useTheme } from './hooks/useTheme.ts'
 import { SizeProvider } from './SizeContext.ts'
 import useStyle from './style'
+
+export type { CSPConfig } from './context'
 
 interface ProviderChildrenProps extends ConfigProviderProps {
   parentContext: ConfigConsumerProps
@@ -186,5 +181,9 @@ const ConfigProvider = defineComponent<
     inheritAttrs: false,
   },
 )
+
+;(ConfigProvider as any).install = (app: App) => {
+  app.component(ConfigProvider.name, ConfigProvider)
+}
 
 export default ConfigProvider

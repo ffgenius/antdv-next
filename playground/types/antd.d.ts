@@ -9,5 +9,6 @@ export {}
 declare module 'vue' {
     export interface GlobalComponents {
         AAffix: typeof import('antdv-next')['Affix'];
+        AConfigProvider: typeof import('antdv-next')['ConfigProvider'];
     }
 }
