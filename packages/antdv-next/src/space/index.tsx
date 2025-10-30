@@ -1,5 +1,5 @@
 import type { App, CSSProperties, SlotsType } from 'vue'
-import type { RenderNodeFn } from '../_util/type.ts'
+import type { EmptyEmit, RenderNodeFn } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import type { SizeType } from '../config-provider/SizeContext'
 import { classNames } from '@v-c/util'
@@ -38,7 +38,7 @@ export interface SpaceSlots {
 
 const InternalSpace = defineComponent<
   SpaceProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<SpaceSlots>
 >(

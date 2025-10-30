@@ -1,6 +1,5 @@
 import type { CSSProperties, InjectionKey, Ref, SlotsType } from 'vue'
 
-import type { EmitsType } from '../_util/type.ts'
 import { BarsOutlined, LeftOutlined, RightOutlined } from '@antdv-next/icons'
 import { classNames } from '@v-c/util'
 import { omit } from 'es-toolkit'
@@ -57,11 +56,12 @@ export interface SiderProps {
   theme?: SiderTheme
 }
 
-export type SiderEmits = EmitsType<{
+export interface SiderEmits {
   'collapse': (collapsed: boolean, type: CollapseType) => void
   'update:collapsed': (collapsed: boolean) => void
   'breakpoint': (broken: boolean) => void
-}>
+  [key: string]: (...args: any[]) => any
+}
 
 export interface SiderSlots {
   trigger: () => any

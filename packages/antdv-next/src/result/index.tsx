@@ -1,5 +1,5 @@
 import type { App, SlotsType } from 'vue'
-import type { VueNode } from '../_util/type.ts'
+import type { EmptyEmit, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, WarningFilled } from '@antdv-next/icons'
 import { classNames } from '@v-c/util'
@@ -121,7 +121,7 @@ const defaultResultProps = {
 
 const Result = defineComponent<
   ResultProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<ResultSlots>
 >(

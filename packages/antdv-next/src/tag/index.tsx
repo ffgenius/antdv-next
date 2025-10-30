@@ -2,7 +2,7 @@ import type { LiteralUnion } from '@v-c/util/dist/type'
 import type { App, CSSProperties, SlotsType } from 'vue'
 import type { PresetColorType, PresetStatusColorType } from '../_util/colors.ts'
 import type { ClosableType } from '../_util/hooks/useClosable.tsx'
-import type { EmitsType, VueNode } from '../_util/type.ts'
+import type { VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
@@ -39,9 +39,10 @@ export interface TagSlots {
   closeIcon?: () => any
 }
 
-export type TagEmits = EmitsType<{
-  close?: (ev: MouseEvent) => void
-}>
+export interface TagEmits {
+  close: (ev: MouseEvent) => void
+  [key: string]: (...args: any[]) => any
+}
 
 const defaultProps: Partial<TagProps> = {
   bordered: true,

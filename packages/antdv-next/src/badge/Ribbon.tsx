@@ -1,7 +1,7 @@
 import type { LiteralUnion } from '@v-c/util/dist/type'
 import type { CSSProperties, SlotsType } from 'vue'
 import type { PresetColorType } from '../_util/colors.ts'
-import type { VueNode } from '../_util/type.ts'
+import type { EmptyEmit, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { classNames } from '@v-c/util'
 import { computed, defineComponent } from 'vue'
@@ -24,7 +24,7 @@ export interface RibbonSlots {
 
 export default defineComponent<
   RibbonProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<RibbonSlots>
 >(

@@ -1,4 +1,4 @@
-import type { EmitsType, VueNode } from '../_util/type.ts'
+import type { VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { classNames } from '@v-c/util'
 import { computed, defineComponent, nextTick, watch } from 'vue'
@@ -13,9 +13,10 @@ export interface AnchorLinkBaseProps extends ComponentBaseProps {
   replace?: boolean
 }
 
-export type AnchorLinkEmits = EmitsType<{
+export interface AnchorLinkEmits {
   click: (e: MouseEvent, params: { title: any, href: any }) => any
-}>
+  [key: string]: (...args: any[]) => any
+}
 
 export type AnchorLinkProps = AnchorLinkBaseProps
 

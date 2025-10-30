@@ -14,6 +14,9 @@ export type EmitsType<T extends Record<string, any>> = EmitsArrToEvent<T> & {
   [key: string]: (...args: any[]) => void
 }
 
+export interface EmptyEmit {
+  [key: string]: (...args: any[]) => void
+}
 export type SlotsDefineType<T extends Record<string, any> = Record<string, any>> = {
   default?: () => any
 } & T

@@ -84,8 +84,8 @@ const ButtonTypeMap: Partial<Record<ButtonType, ColorVariantPairType>> = {
 }
 
 export interface ButtonEmits {
-  click?: (e: MouseEvent) => void
-  [key: string]: any
+  click: (e: MouseEvent) => void
+  [key: string]: (...args: any[]) => any
 }
 
 export interface ButtonSlots {
@@ -321,7 +321,7 @@ const InternalCompoundedButton = defineComponent<
       if (mergedHref !== undefined) {
         return wrapCSSVar(
           <a
-            {...omit(attrs, ['class', 'style', 'onClick'])}
+            {...omit(attrs, ['class', 'style'])}
             ref={buttonRef as any}
             class={[cls, { [`${prefixCls.value}-disabled`]: mergedDisabled.value }, attrs.class]}
             style={[mergedStyle, (attrs as any).style]}
@@ -337,7 +337,7 @@ const InternalCompoundedButton = defineComponent<
 
       let buttonNodes = (
         <button
-          {...omit(attrs, ['class', 'style', 'onClick'])}
+          {...omit(attrs, ['class', 'style'])}
           ref={buttonRef as any}
           type={htmlType}
           class={[cls, attrs.class]}

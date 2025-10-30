@@ -1,4 +1,5 @@
 import type { CSSProperties, SlotsType } from 'vue'
+import type { EmptyEmit } from '../_util/type.ts'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { cloneVNode, computed, defineComponent } from 'vue'
@@ -19,7 +20,7 @@ export interface ScrollNumberSlots {
 
 export default defineComponent<
   ScrollNumberProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<ScrollNumberSlots>
 >(

@@ -1,5 +1,5 @@
 import type { App, CSSProperties, SlotsType } from 'vue'
-import type { VueNode } from '../_util/type.ts'
+import type { EmptyEmit, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
@@ -41,7 +41,7 @@ const defaultProps = {
 
 const Empty = defineComponent<
   EmptyProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<EmptySlots>
 >(

@@ -1,4 +1,5 @@
 import type { App, CSSProperties, SlotsType } from 'vue'
+import type { EmptyEmit } from '../_util/type.ts'
 import type { FlexProps } from './interface.ts'
 import { classNames } from '@v-c/util'
 import { omit } from 'es-toolkit'
@@ -15,7 +16,7 @@ const defaultFlexProps = {
 export interface FlexSlots {
   default: () => any
 }
-const Flex = defineComponent<FlexProps, Record<string, any>, string, SlotsType<FlexSlots>>(
+const Flex = defineComponent<FlexProps, EmptyEmit, string, SlotsType<FlexSlots>>(
   (props = defaultFlexProps, { slots, attrs }) => {
     const configCtx = useConfig()
     const prefixCls = computed(() => configCtx.value.getPrefixCls('flex', props.prefixCls))

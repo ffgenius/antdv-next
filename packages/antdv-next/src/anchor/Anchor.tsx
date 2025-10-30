@@ -1,6 +1,6 @@
 import type { Key } from '@v-c/util/dist/type'
 import type { App, SlotsType, VNodeChild } from 'vue'
-import type { EmitsType, SlotsDefineType } from '../_util/type.ts'
+import type { SlotsDefineType } from '../_util/type.ts'
 import type { AffixProps } from '../affix'
 import type { ComponentBaseProps } from '../config-provider/context'
 import type { AnchorLinkBaseProps } from './AnchorLink'
@@ -48,10 +48,11 @@ export interface AnchorProps extends ComponentBaseProps {
   replace?: boolean
 }
 
-export type AnchorEmits = EmitsType<{
+export interface AnchorEmits {
   click: (e: MouseEvent, link: { title: VNodeChild, href: string }) => any
   change: (currentActiveLink: string) => any
-}>
+  [key: string]: (...args: any[]) => any
+}
 
 export type AnchorSlots = SlotsDefineType<{
   item: (item: AnchorLinkItemProps) => any
@@ -307,7 +308,7 @@ const Anchor = defineComponent<
                 <AnchorLink
                   replace={props.replace}
                   {...item}
-                  title={_item.length ? _item : item.title}
+                  title={_item.length ? _item as any : item.title}
                   key={item.key}
                 >
                   {props.direction === 'vertical' && createNestedLink(item.children)}

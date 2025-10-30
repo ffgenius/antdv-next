@@ -1,7 +1,7 @@
 import type { LiteralUnion } from '@v-c/util/dist/type'
 import type { App, CSSProperties, SlotsType, VNode } from 'vue'
 import type { PresetStatusColorType } from '../_util/colors.ts'
-import type { VueNode } from '../_util/type.ts'
+import type { EmptyEmit, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import type { PresetColorKey } from '../theme/interface'
 import type { RibbonProps } from './Ribbon.tsx'
@@ -52,7 +52,7 @@ const defaultProps = {
 
 const InternalBadge = defineComponent<
   BadgeProps,
-  Record<string, any>,
+  EmptyEmit,
   string,
   SlotsType<BadgeSlots>
 >(

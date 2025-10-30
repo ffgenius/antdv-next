@@ -1,6 +1,6 @@
 import type { AriaAttributes, SlotsType } from 'vue'
 import type { ClosableType } from '../_util/hooks/useClosable'
-import type { EmitsType, SlotsDefineType, VueNode } from '../_util/type.ts'
+import type { SlotsDefineType, VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context'
 import { CheckCircleFilled, CloseCircleFilled, CloseOutlined, ExclamationCircleFilled, InfoCircleFilled } from '@antdv-next/icons'
 import { classNames } from '@v-c/util'
@@ -42,13 +42,14 @@ export type AlertSlots = SlotsDefineType<{
   action?: () => any
 }>
 
-export type AlertEmits = EmitsType<{
+export interface AlertEmits {
   /** Callback when close Alert */
   close: (e: any) => any
   mouseenter: (e: any) => any
   mouseleave: (e: any) => any
   click: (e: any) => any
-}>
+  [key: string]: (e: any) => any
+}
 
 const iconMapFilled = {
   success: CheckCircleFilled,

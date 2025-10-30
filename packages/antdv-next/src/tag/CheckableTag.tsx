@@ -1,5 +1,5 @@
 import type { SlotsType } from 'vue'
-import type { EmitsType, VueNode } from '../_util/type.ts'
+import type { VueNode } from '../_util/type.ts'
 import type { ComponentBaseProps } from '../config-provider/context.ts'
 import { classNames } from '@v-c/util'
 import { computed, defineComponent } from 'vue'
@@ -20,10 +20,11 @@ export interface CheckableTagProps extends ComponentBaseProps {
   icon?: VueNode
 }
 
-export type CheckableTagEmits = EmitsType<{
+export interface CheckableTagEmits {
   change: (checked: boolean) => void
   click: (e: MouseEvent) => void
-}>
+  [key: string]: (...args: any[]) => any
+}
 
 export interface CheckableTagSlots {
   default: () => any

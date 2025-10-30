@@ -1,4 +1,5 @@
 import type { SlotsType } from 'vue'
+import type { EmptyEmit } from '../_util/type.ts'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { defineComponent } from 'vue'
 import { useSpaceContext } from './context.ts'
@@ -13,7 +14,7 @@ export interface ItemSlots {
   split?: () => any
 }
 
-const Item = defineComponent<ItemProps, Record<string, any>, string, SlotsType<ItemSlots>>(
+const Item = defineComponent<ItemProps, EmptyEmit, string, SlotsType<ItemSlots>>(
   (props, { slots, attrs }) => {
     const spaceContext = useSpaceContext()
     return () => {
