@@ -263,8 +263,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1(vue@3.5.24(typescript@5.9.3))
       '@v-c/textarea':
-        specifier: ^0.0.4
-        version: 0.0.4(vue@3.5.24(typescript@5.9.3))
+        specifier: ^0.0.6
+        version: 0.0.6(vue@3.5.24(typescript@5.9.3))
       '@v-c/tooltip':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.24(typescript@5.9.3))
@@ -1637,8 +1637,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  '@v-c/textarea@0.0.4':
-    resolution: {integrity: sha512-35ZxTey8E2h3dnIPOHLJoRg4Ube4QMAO5RAHFvU5Wmjj4wxZVca2l0vUqZ2tcmX7/uuq1v9b+MfLNvJBesxX4w==}
+  '@v-c/textarea@0.0.6':
+    resolution: {integrity: sha512-d7v30gxcNR2b/abVvixQ57eDd1OqBuc1Se/3uAIQ6gSZ5KlRlaotAQJ5D038gfcjUhtmCqEGVPsQrWm8kmvZCg==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -5166,7 +5166,7 @@ snapshots:
       '@v-c/util': 1.0.0(vue@3.5.24(typescript@5.9.3))
       vue: 3.5.24(typescript@5.9.3)
 
-  '@v-c/textarea@0.0.4(vue@3.5.24(typescript@5.9.3))':
+  '@v-c/textarea@0.0.6(vue@3.5.24(typescript@5.9.3))':
     dependencies:
       '@v-c/input': 0.0.2(vue@3.5.24(typescript@5.9.3))
       '@v-c/resize-observer': 1.0.0(vue@3.5.24(typescript@5.9.3))

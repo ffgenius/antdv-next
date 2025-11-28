@@ -1,6 +1,7 @@
 import { onBeforeUnmount, shallowRef, unref } from 'vue'
 import copy from '../../_util/copy'
 import toList from '../../_util/toList'
+import { getTextByNode } from '../../_util/vueNode'
 
 function useCopyClick({
   copyConfig,
@@ -32,6 +33,7 @@ function useCopyClick({
     }
     const origin = getText?.()
     const textList = toList(origin, true).map((item) => {
+      item = getTextByNode(item)
       if (typeof item === 'string' || typeof item === 'number') {
         return String(item)
       }

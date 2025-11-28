@@ -472,7 +472,6 @@ const Base = defineComponent<
           />
         )
       }
-      console.log(mergedEnableEllipsis.value, cssEllipsis.value)
       return (
         <ResizeObserver onResize={onResize} disabled={!mergedEnableEllipsis.value}>
           <EllipsisTooltip
