@@ -48,12 +48,12 @@ export interface OTPEmits {
   'change': (value: string) => void
   'input': (cells: string[]) => void
   'update:value': (value: string) => void
-  [key: string]: any
+  [key: string]: (...args: any[]) => any
 }
 
 export interface OPTSlots {
   default: () => any
-  separator: (i: number) => any
+  separator: (params: { index: number }) => any
 }
 
 const OTP = defineComponent<
@@ -176,7 +176,7 @@ const OTP = defineComponent<
 
     const renderSeparator = (index: number) => {
       const separator = slots.separator || props.separator
-      const separatorNode = typeof separator === 'function' ? separator(index) : separator
+      const separatorNode = typeof separator === 'function' ? separator({ index }) : separator
       if (!separatorNode) {
         return null
       }

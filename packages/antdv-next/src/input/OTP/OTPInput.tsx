@@ -81,6 +81,7 @@ const OTPInput = defineComponent<
           class={clsx(className, { [`${props.prefixCls}-mask-input`]: props.mask })}
           style={style}
           onChange={handleChange}
+          htmlSize={1}
           onKeydown={handleKeyDown}
           onFocus={() => syncSelection()}
           onMousedown={() => syncSelection()}
