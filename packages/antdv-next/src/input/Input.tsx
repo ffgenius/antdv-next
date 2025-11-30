@@ -45,7 +45,7 @@ interface BaseVcInputProps {
   htmlSize?: number
   placeholder?: string
   count?: VcInputProps['count']
-  maxLength?: number
+  maxlength?: number
   readonly?: boolean
   hidden?: boolean
   dataAttrs?: VcInputProps['dataAttrs']
@@ -81,8 +81,8 @@ export interface InputEmits {
   'focus': NonNullable<VcInputProps['onFocus']>
   'keydown': NonNullable<VcInputProps['onKeyDown']>
   'keyup': NonNullable<VcInputProps['onKeyUp']>
-  'compositionStart': NonNullable<VcInputProps['onCompositionStart']>
-  'compositionEnd': NonNullable<VcInputProps['onCompositionEnd']>
+  'compositionstart': NonNullable<VcInputProps['onCompositionStart']>
+  'compositionend': NonNullable<VcInputProps['onCompositionEnd']>
   'update:value': (value: VcInputProps['value']) => void
   [key: string]: (...args: any[]) => any
 }
@@ -112,6 +112,8 @@ const omitKeys: (keyof InputProps)[] = [
   'autoComplete',
   'prefix',
   'suffix',
+  'maxlength',
+  'readonly',
 ]
 
 const InternalInput = defineComponent<
@@ -255,11 +257,11 @@ const InternalInput = defineComponent<
     }
 
     const handleCompositionStart: InputEmits['compositionStart'] = (e) => {
-      emit('compositionStart', e)
+      emit('compositionstart', e)
     }
 
     const handleCompositionEnd: InputEmits['compositionEnd'] = (e) => {
-      emit('compositionEnd', e)
+      emit('compositionend', e)
     }
 
     return () => {
@@ -358,6 +360,8 @@ const InternalInput = defineComponent<
         <VcInput
           {...restAttrs}
           {...restProps}
+          maxLength={props.maxlength}
+          readOnly={props.readonly}
           ref={inputRef as any}
           prefixCls={prefixCls.value}
           class={classesValue}

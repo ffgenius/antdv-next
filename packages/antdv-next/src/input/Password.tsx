@@ -20,7 +20,7 @@ export interface PasswordProps extends Omit<BaseInputProps, 'type'> {
   action?: PasswordAction
   visibilityToggle?: VisibilityToggle
   suffix?: VueNode
-  iconRender?: (visible: boolean) => VueNode
+  iconRender?: (params: { visible: boolean }) => any
 }
 
 export interface PasswordEmits extends BaseInputEmits {}
@@ -32,6 +32,7 @@ export interface PasswordSlots {
   addonAfter?: () => any
   clearIcon?: () => any
   default?: () => any
+  iconRender?: (params: { visible: boolean }) => any
 }
 
 const defaultIconRender = (visible: boolean) => (visible ? <EyeOutlined /> : <EyeInvisibleOutlined />)
@@ -82,11 +83,19 @@ const InternalPassword = defineComponent<
 
     const action = computed<PasswordAction>(() => props.action ?? 'click')
 
+    const iconRender = (visible: boolean) => {
+      const _iconRender = slots.iconRender || props.iconRender
+      if (_iconRender) {
+        return _iconRender({ visible })
+      }
+      return defaultIconRender(visible)
+    }
+
     const getIcon = () => {
       if (!visibilityToggle.value) {
         return null
       }
-      const iconNode = (props.iconRender ?? defaultIconRender)(visible.value)
+      const iconNode = iconRender(visible.value)
       const originVNode = isVNode(iconNode) ? iconNode : <span>{iconNode}</span>
       const originalProps = originVNode.props || {}
       const iconVNode = originVNode
@@ -148,8 +157,8 @@ const InternalPassword = defineComponent<
           onBlur={handleBlur}
           onPressEnter={e => emit('pressEnter', e)}
           onClear={() => emit('clear')}
-          onCompositionStart={e => emit('compositionStart', e)}
-          onCompositionEnd={e => emit('compositionEnd', e)}
+          onCompositionstart={e => emit('compositionStart', e)}
+          onCompositionend={e => emit('compositionEnd', e)}
           onKeydown={e => emit('keydown', e)}
           onKeyup={e => emit('keyup', e)}
           v-slots={slots}

@@ -1,3 +1,4 @@
+import type { InputProps } from '@v-c/input'
 import type { TextAreaProps as VcTextAreaProps } from '@v-c/textarea'
 import type { SlotsType } from 'vue'
 import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
@@ -64,6 +65,7 @@ export interface TextAreaProps
   maxlength?: number
   minlength?: number
   readonly?: boolean
+  showCount?: InputProps['showCount']
 }
 
 export interface TextAreaEmits {
