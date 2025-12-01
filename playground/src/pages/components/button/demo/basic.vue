@@ -9,17 +9,17 @@ Through the `type` syntactic sugar, use the preset button styles: `primary` butt
 <template>
   <a-flex gap="small" wrap>
     <a-button type="primary">
-      Primary a-button
+      Primary Button
     </a-button>
-    <a-button>Default a-button</a-button>
+    <a-button>Default Button</a-button>
     <a-button type="dashed">
-      Dashed a-button
+      Dashed Button
     </a-button>
     <a-button type="text">
-      Text a-button
+      Text Button
     </a-button>
     <a-button type="link">
-      Link a-button
+      Link Button
     </a-button>
   </a-flex>
 </template>
