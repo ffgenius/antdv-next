@@ -1,7 +1,7 @@
-import type { Slots } from 'vue'
+import type { VNode } from 'vue'
 import type { PanelProps } from '../interface'
 import { filterEmpty } from '@v-c/util/dist/props-util'
-import { computed, isVNode } from 'vue'
+import { isVNode } from 'vue'
 
 export type ItemType = Omit<PanelProps, 'collapsible'> & {
   collapsible: {
@@ -31,19 +31,16 @@ function getCollapsible(collapsible?: PanelProps['collapsible']): ItemType['coll
 /**
  * Convert `children` into `items`.
  */
-function useItems(slots: Slots) {
-  return computed(() => {
-    const children = filterEmpty(slots?.default?.() ?? [])
-    return children.filter(item => isVNode(item)).map((node) => {
-      const { props, children } = node
-      const { collapsible, ...restProps } = (props ?? {}) as PanelProps
-      return {
-        ...restProps,
-        collapsible: getCollapsible(collapsible),
-        _$slots: children,
-      } as ItemType
-    })
+export function convertChildrenToItems(children: VNode[]): ItemType[] {
+  return filterEmpty(children).filter(item => isVNode(item)).map((node) => {
+    const { props, children } = node
+    const defaultSize = props?.['default-size'] ?? props?.defaultSize
+    const { collapsible, ...restProps } = (props ?? {}) as PanelProps
+    return {
+      ...restProps,
+      defaultSize,
+      collapsible: getCollapsible(collapsible),
+      _$slots: children,
+    } as ItemType
   })
 }
-
-export default useItems

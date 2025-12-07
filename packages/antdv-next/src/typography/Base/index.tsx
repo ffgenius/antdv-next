@@ -167,7 +167,7 @@ const Base = defineComponent<
     // ========================== Copyable ==========================
     const [enableCopy, copyConfig] = useMergedConfig<CopyConfig>(computed(() => props.copyable))
 
-    const childrenNodes = computed(() => filterEmpty(slots.default?.() ?? []))
+    const childrenNodes = shallowRef<any[]>([])
 
     const { copied, copyLoading, onClick: onCopyClick } = useCopyClick({
       copyConfig,
@@ -439,7 +439,8 @@ const Base = defineComponent<
 
     return () => {
       const { className: attrClass, style: attrStyle, restAttrs } = getAttrStyleAndClass(attrs)
-      const children = childrenNodes.value
+      const children = filterEmpty(slots?.default?.())
+      childrenNodes.value = children
       const clickHandler = triggerType.value.includes('text')
         ? onEditClick
         : (e: MouseEvent) => emit('click', e)

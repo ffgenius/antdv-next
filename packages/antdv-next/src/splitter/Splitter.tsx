@@ -17,7 +17,7 @@ import { toPropsRefs } from '../_util/tools.ts'
 import { devUseWarning, isDev } from '../_util/warning.ts'
 import { useComponentBaseConfig } from '../config-provider/context'
 import useCSSVarCls from '../config-provider/hooks/useCSSVarCls'
-import useItems from './hooks/useItems.ts'
+import { convertChildrenToItems } from './hooks/useItems.ts'
 import useResizable from './hooks/useResizable.ts'
 import useResize from './hooks/useResize.ts'
 import useSizes from './hooks/useSizes.ts'
@@ -50,7 +50,7 @@ const Splitter = defineComponent<
     const reverse = computed(() => !isVertical.value && isRTL.value)
 
     // ====================== Items Data ======================
-    const items = useItems(slots)
+    const items = shallowRef<ReturnType<typeof convertChildrenToItems>>([])
 
     // >>> Warning for uncontrolled
 
@@ -175,6 +175,10 @@ const Splitter = defineComponent<
         draggerIcon,
         collapsibleIcon,
       } = props
+
+      // Update items from slots in render function for reactivity
+      items.value = convertChildrenToItems(slots?.default?.() ?? [])
+
       const { className, style, restAttrs } = getAttrStyleAndClass(attrs)
       const containerClassName = clsx(
         prefixCls.value,
@@ -209,7 +213,11 @@ const Splitter = defineComponent<
                 style: { ...mergedStyles.value.panel, ...item.style },
               }
               // Panel
-              const panel = <InternalPanel v-slots={item._$slots} {...panelProps} prefixCls={prefixCls.value} size={panelSizes.value[idx]} />
+              const panel = (
+                <InternalPanel {...panelProps} prefixCls={prefixCls.value} size={panelSizes.value[idx]}>
+                  {item._$slots?.default?.()}
+                </InternalPanel>
+              )
               // Split Bar
               let splitBar: any | null = null
 
