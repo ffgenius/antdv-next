@@ -1,16 +1,24 @@
 import type { SlotsType } from 'vue'
-import type { ModalEmits, ModalProps, ModalSlots, MousePosition } from './interface'
+import type { ModalClassNamesType, ModalEmits, ModalProps, ModalSlots, MousePosition } from './interface'
+import type { Breakpoint } from '../_util/responsiveObserver'
+import Dialog from '@v-c/dialog'
 import { CloseOutlined } from '@antdv-next/icons'
 import { clsx } from '@v-c/util'
+import { getTransitionName } from '@v-c/util/dist/utils/transition'
+import { omit } from 'es-toolkit'
 import { computed, defineComponent } from 'vue'
-import { useMergedMask } from '../_util/hooks'
+import { ContextIsolator } from '../_util/ContextIsolator.tsx'
+import { getAttrStyleAndClass, useMergeSemantic, useMergedMask, useToArr, useToProps, useZIndex } from '../_util/hooks'
 import useClosable, { pickClosable } from '../_util/hooks/useClosable.tsx'
 import { canUseDocElement } from '../_util/styleChecker'
-import { toPropsRefs } from '../_util/tools'
+import { getSlotPropsFnRun, toPropsRefs } from '../_util/tools'
 import { devUseWarning, isDev } from '../_util/warning'
+import { ZIndexProvider } from '../_util/zindexContext.ts'
 import { useBaseConfig, useComponentBaseConfig } from '../config-provider/context'
 import useCSSVarCls from '../config-provider/hooks/useCSSVarCls'
-import { renderCloseIcon } from './shared.tsx'
+import Skeleton from '../skeleton'
+import { usePanelRef } from '../watermark/context.ts'
+import { Footer, renderCloseIcon } from './shared.tsx'
 import useStyle from './style'
 
 let mousePosition: MousePosition
@@ -45,7 +53,7 @@ const Modal = defineComponent<
   string,
   SlotsType<ModalSlots>
 >(
-  (props = defaults, { slots, attrs, expose, emit }) => {
+  (props = defaults, { slots, attrs, emit }) => {
     const {
       getPopupContainer: getContextPopupContainer,
       getPrefixCls,
@@ -68,8 +76,16 @@ const Modal = defineComponent<
 
     const {
       mask: modalMask,
-    } = toPropsRefs(props, 'mask')
+      classes,
+      styles,
+      zIndex: customZIndex,
+      width: widthRef,
+      rootClass: rootClassRef,
+      rootStyle: rootStyleRef,
+      panelRef: panelRefRef,
+    } = toPropsRefs(props as any, 'mask', 'classes', 'styles', 'zIndex', 'width', 'rootClass', 'rootStyle', 'panelRef')
     const { modal: modalContext } = useBaseConfig()
+    const modalRenderRef = computed(() => slots.modalRender || props.modalRender)
     const rootPrefixCls = computed(() => getPrefixCls())
     const closableContext = computed(() => {
       const { closable } = props
@@ -86,23 +102,25 @@ const Modal = defineComponent<
         return
       }
       emit('cancel', e)
+      closableContext.value[1]?.()
       emit('close')
     }
 
     const handleOk = (e: MouseEvent) => {
       emit('ok', e)
+      closableContext.value[1]?.()
       emit('close')
     }
 
     if (isDev) {
-      const warning = devUseWarning('Modal');
+      const warning = devUseWarning('Modal')
 
       [
         ['bodyStyle', 'styles.body'],
         ['maskStyle', 'styles.mask'],
         ['destroyOnClose', 'destroyOnHidden'],
       ].forEach(([deprecatedName, newName]) => {
-        warning.deprecated(!((props as any)[deprecatedName!]), deprecatedName!, newName!)
+        warning.deprecated(!((props as any)[deprecatedName!] !== undefined), deprecatedName!, newName!)
       })
     }
 
@@ -110,8 +128,13 @@ const Modal = defineComponent<
     const rootCls = useCSSVarCls(prefixCls)
     const [hashId, cssVarCls] = useStyle(prefixCls, rootCls)
 
+    const closableProps = computed(() => ({
+      ...props,
+      closeIcon: getSlotPropsFnRun(slots, props, 'closeIcon'),
+    }))
+
     const closableIconContext = useClosable(
-      pickClosable(computed(() => props)) as any,
+      pickClosable(closableProps as any) as any,
       pickClosable(modalContext as any) as any,
       computed(() => {
         return {
@@ -121,17 +144,84 @@ const Modal = defineComponent<
         }
       }),
     )
+
+    const [zIndex, contextZIndex] = useZIndex('Modal', customZIndex)
+
+    const mergedProps = computed(() => ({
+      ...props,
+      width: widthRef.value,
+      mask: mergedMask.value,
+      zIndex: zIndex.value,
+    }) as ModalProps)
+
+    const [mergedClassNames, mergedStyles] = useMergeSemantic<
+      ModalClassNamesType,
+      ModalStylesType,
+      ModalProps
+    >(
+      useToArr(contextClassNames, classes, maskBlurClassName),
+      useToArr(contextStyles, styles),
+      useToProps(mergedProps),
+    )
+
+    const numWidth = computed(() => {
+      if (widthRef.value && typeof widthRef.value === 'object') {
+        return undefined
+      }
+      return widthRef.value
+    })
+
+    const responsiveWidth = computed<Partial<Record<Breakpoint, string | number>> | undefined>(() => {
+      if (widthRef.value && typeof widthRef.value === 'object') {
+        return widthRef.value
+      }
+      return undefined
+    })
+
+    const responsiveWidthVars = computed(() => {
+      const vars: Record<string, string> = {}
+      if (responsiveWidth.value) {
+        Object.keys(responsiveWidth.value).forEach((breakpoint) => {
+          const breakpointWidth = responsiveWidth.value?.[breakpoint as Breakpoint]
+          if (breakpointWidth !== undefined) {
+            vars[`--${prefixCls.value}-${breakpoint}-width`] = typeof breakpointWidth === 'number'
+              ? `${breakpointWidth}px`
+              : breakpointWidth
+          }
+        })
+      }
+      return vars
+    })
+
+    const panelSelector = computed(() => `.${prefixCls.value}-${modalRenderRef.value ? 'render' : 'container'}`)
+    const innerPanelRef = usePanelRef(panelSelector)
+    const mergedPanelRef = (instance: any) => {
+      innerPanelRef(instance)
+      const panelRef = panelRefRef?.value
+      if (typeof panelRef === 'function') {
+        panelRef(instance)
+      }
+      else if (panelRef && typeof panelRef === 'object') {
+        (panelRef as any).value = instance
+      }
+    }
     return () => {
       const {
         wrapClassName,
         centered,
+        loading,
+        confirmLoading,
+        destroyOnHidden,
+        destroyOnClose,
+        getContainer: customizeGetContainer,
       } = props
+      const { className, style: attrStyle, restAttrs } = getAttrStyleAndClass(attrs)
       const wrapClassNameExtended = clsx(wrapClassName, {
         [`${prefixCls.value}-centered`]: centered ?? contextCentered.value,
         [`${prefixCls.value}-wrap-rtl`]: direction.value === 'rtl',
       })
       const [rawClosable, mergedCloseIcon, closeBtnIsDisabled, ariaProps] = closableIconContext.value as any
-      const [closableAfterclose, onClose] = closableContext.value
+      const [closableAfterclose] = closableContext.value
 
       const mergedClosable = rawClosable
         ? {
@@ -141,7 +231,131 @@ const Modal = defineComponent<
             ...ariaProps,
           }
         : false
-      return null
+
+      const mergedModalRender = modalRenderRef.value
+        ? (node: any) => (
+            <div class={`${prefixCls.value}-render`}>
+              {getSlotPropsFnRun(slots, { modalRender: modalRenderRef.value }, 'modalRender', true, node)}
+            </div>
+          )
+        : undefined
+
+      const mergedOkButtonProps = { ...contextOkButtonProps.value, ...props.okButtonProps }
+      const mergedCancelButtonProps = { ...contextCancelButtonProps.value, ...props.cancelButtonProps }
+
+      const dialogFooter = props.footer !== null && !loading
+        ? (
+            <Footer
+              confirmLoading={confirmLoading}
+              okType={props.okType}
+              okText={props.okText}
+              cancelText={props.cancelText}
+              okButtonProps={mergedOkButtonProps}
+              cancelButtonProps={mergedCancelButtonProps}
+              footer={props.footer}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              v-slots={{
+                footer: slots.footer,
+                okText: slots.okText,
+                cancelText: slots.cancelText,
+              }}
+            />
+          )
+        : null
+
+      const restProps = omit(props as any, [
+        'open',
+        'prefixCls',
+        'rootClass',
+        'rootStyle',
+        'wrapClassName',
+        'centered',
+        'width',
+        'footer',
+        'class',
+        'style',
+        'classes',
+        'styles',
+        'loading',
+        'confirmLoading',
+        'okButtonProps',
+        'cancelButtonProps',
+        'mask',
+        'zIndex',
+        'modalRender',
+        'closeIcon',
+        'destroyOnHidden',
+        'destroyOnClose',
+        'mousePosition',
+        'focusTriggerAfterClose',
+        'panelRef',
+      ] as any)
+
+      const titleNode = getSlotPropsFnRun(slots, props, 'title') ?? props.title
+      const mergedClassName = clsx(hashId.value, contextClassName.value, className)
+      const mergedRootClassName = clsx(
+        hashId.value,
+        rootClassRef.value,
+        cssVarCls.value,
+        rootCls.value,
+        mergedClassNames.value.root,
+      )
+
+      const getContainer
+      // 有可能为 false，所以不能直接判断
+        = customizeGetContainer === undefined
+          ? getContextPopupContainer
+          : customizeGetContainer
+
+      return (
+        <ContextIsolator form space>
+          <ZIndexProvider value={contextZIndex.value}>
+            <Dialog
+              {...restAttrs as any}
+              {...restProps as any}
+              width={numWidth.value}
+              zIndex={zIndex.value}
+              getContainer={getContainer}
+              prefixCls={prefixCls.value}
+              rootClassName={mergedRootClassName}
+              rootStyle={{ ...rootStyleRef.value, ...mergedStyles.value.root }}
+              footer={dialogFooter}
+              title={titleNode}
+              visible={props.open}
+              mousePosition={props.mousePosition ?? mousePosition}
+              onClose={handleCancel as any}
+              closable={mergedClosable as any}
+              closeIcon={mergedCloseIcon}
+              focusTriggerAfterClose={props.focusTriggerAfterClose ?? true}
+              transitionName={getTransitionName(rootPrefixCls.value, 'zoom', props.transitionName)}
+              maskTransitionName={getTransitionName(rootPrefixCls.value, 'fade', props.maskTransitionName)}
+              mask={mergedMask.value}
+              className={mergedClassName}
+              style={{ ...contextStyle.value, ...responsiveWidthVars.value, ...attrStyle }}
+              classNames={{
+                ...mergedClassNames.value,
+                wrapper: clsx(mergedClassNames.value.wrapper, wrapClassNameExtended),
+              }}
+              styles={mergedStyles.value}
+              panelRef={mergedPanelRef}
+              destroyOnHidden={destroyOnHidden ?? destroyOnClose}
+              modalRender={mergedModalRender}
+            >
+              {loading
+                ? (
+                    <Skeleton
+                      active
+                      title={false}
+                      paragraph={{ rows: 4 }}
+                      class={`${prefixCls.value}-body-skeleton`}
+                    />
+                  )
+                : slots.default?.()}
+            </Dialog>
+          </ZIndexProvider>
+        </ContextIsolator>
+      )
     }
   },
   {
