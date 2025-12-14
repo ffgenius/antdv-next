@@ -1,5 +1,6 @@
 import type { DerivativeFunc } from '@antdv-next/cssinjs'
 import type { CSSProperties, InjectionKey, Ref } from 'vue'
+import type { MaskType } from '../_util/hooks'
 import type { VueNode } from '../_util/type.ts'
 import type { WarningContextProps } from '../_util/warning.ts'
 import type { ShowWaveEffect } from '../_util/wave/interface.ts'
@@ -19,6 +20,7 @@ import type { EmptyProps } from '../empty'
 import type { FlexProps } from '../flex'
 import type { FloatButtonGroupProps, FloatButtonProps } from '../float-button'
 import type { FormProps } from '../form/Form.tsx'
+import type { ImageProps } from '../image/index.tsx'
 import type { InputNumberProps } from '../input-number'
 import type { InputProps } from '../input/Input.tsx'
 import type { OTPProps } from '../input/OTP'
@@ -325,6 +327,12 @@ export type ModalConfig = ComponentStyleConfig
 
 export type StepsConfig = ComponentStyleConfig & Pick<StepsProps, 'classes' | 'styles'>
 
+export type ImageConfig = ComponentStyleConfig
+  & Pick<ImageProps, 'classes' | 'styles'> & {
+    preview?: Partial<Record<'closeIcon', any>>
+      & Pick<ImageProps, 'classes' | 'styles'> & { mask?: MaskType }
+    fallback?: string
+  }
 export interface ConfigComponentProps {
   input?: InputConfig
   inputNumber?: InputNumberConfig
@@ -354,7 +362,7 @@ export interface ConfigComponentProps {
   segmented?: SegmentedConfig
   steps?: StepsConfig
   statistic?: StatisticConfig
-  // image?: ImageConfig;
+  image?: ImageConfig
   layout?: ComponentStyleConfig
   // list?: ListConfig;
   // mentions?: MentionsConfig;
