@@ -3,6 +3,8 @@ import type { Key } from '@v-c/util/dist/type'
 import type { SlotsType } from 'vue'
 import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
 import type { VueNode } from '../_util/type.ts'
+import { HolderOutlined } from '@antdv-next/icons'
+import VcTree from '@v-c/tree'
 import { computed, defineComponent } from 'vue'
 import {
   useMergeSemantic,
@@ -10,11 +12,12 @@ import {
   useToProps,
 } from '../_util/hooks'
 import initCollapseMotion from '../_util/motion.ts'
-import { toPropsRefs } from '../_util/tools.ts'
+import { getSlotPropsFnRun, toPropsRefs } from '../_util/tools.ts'
 import { useComponentBaseConfig } from '../config-provider/context.ts'
 import { useDisabledContext } from '../config-provider/DisabledContext.tsx'
 import { useToken } from '../theme/internal'
 import useStyle from './style'
+import SwitcherIconCom from './utils/iconUtil.tsx'
 
 export type SwitcherIcon = any | ((props: AntTreeNodeProps) => any)
 export type TreeLeafIcon = any | ((props: AntTreeNodeProps) => any)
@@ -212,6 +215,7 @@ export interface TreeEmits {
 
 export interface TreeSlots {
   switcherLoadingIcon: () => any
+  switcherIcon: (props: AntTreeNodeProps) => any
   default: () => any
   draggableIcon: () => any
   icon: (props: AntdTreeNodeAttribute) => any
@@ -265,8 +269,59 @@ const Tree = defineComponent<
     >(useToArr(contextClassNames, classes), useToArr(contextStyles, styles), useToProps(mergedProps))
     const [hashId, cssVarCls] = useStyle(prefixCls)
     const [, token] = useToken()
+
+    const itemHeight = computed(() => token.value.paddingXS / 2 + (token.value.Tree?.titleHeight || token.value.controlHeightSM))
+
     return () => {
-      return null
+      const { draggable, showLine } = props
+      const draggableIcon = getSlotPropsFnRun(slots, {}, 'draggableIcon')
+      const draggableConfigFn = () => {
+        if (!draggable) {
+          return false
+        }
+
+        let mergedDraggable: DraggableConfig = {}
+        switch (typeof draggable) {
+          case 'function':
+            mergedDraggable.nodeDraggable = draggable
+            break
+          case 'object':
+            mergedDraggable = { ...draggable }
+            break
+          default:
+            break
+            // Do nothing
+        }
+
+        if (mergedDraggable.icon !== false) {
+          mergedDraggable.icon = draggableIcon || mergedDraggable.icon || <HolderOutlined />
+        }
+
+        return mergedDraggable
+      }
+      const draggableConfig = draggableConfigFn()
+      const switcherIcon = slots?.switcherIcon ?? props?.switcherIcon
+      const switcherLoadingIcon = slots?.switcherLoadingIcon ?? props?.switcherLoadingIcon
+      const renderSwitcherIcon = (nodeProps: AntTreeNodeProps) => (
+        <SwitcherIconCom
+          prefixCls={prefixCls.value}
+          switcherIcon={switcherIcon}
+          switcherLoadingIcon={switcherLoadingIcon}
+          treeNodeProps={nodeProps}
+          showLine={showLine}
+        />
+      )
+      return (
+        <VcTree
+          itemHeight={itemHeight.value}
+          virtual={virtual.value}
+          prefixCls={prefixCls.value}
+          v-slots={{
+            default: slots?.default,
+          }}
+        >
+        </VcTree>
+      )
     }
   },
   {
