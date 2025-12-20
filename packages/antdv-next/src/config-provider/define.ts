@@ -30,6 +30,7 @@ import type {
   TextAreaConfig,
   ThemeConfig,
   TooltipConfig,
+  TreeSelectConfig,
   Variant,
   WaveConfig,
 } from './context.ts'
@@ -82,7 +83,7 @@ export interface ConfigProviderProps {
   calendar?: ComponentStyleConfig
   carousel?: ComponentStyleConfig
   // cascader?: CascaderConfig;
-  // treeSelect?: TreeSelectConfig;
+  treeSelect?: TreeSelectConfig
   collapse?: CollapseConfig
   divider?: ComponentStyleConfig
   // drawer?: DrawerConfig;

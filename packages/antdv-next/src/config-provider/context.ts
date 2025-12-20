@@ -50,6 +50,7 @@ import type { TagProps } from '../tag'
 import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../theme/interface'
 import type { TooltipProps } from '../tooltip'
 import type { TourProps } from '../tour'
+import type { TreeSelectProps } from '../tree-select'
 import type { TreeProps } from '../tree/Tree.tsx'
 import type { BlockProps as TypographyBaseProps } from '../typography/interface'
 import type { RenderEmptyHandler } from './defaultRenderEmpty'
@@ -337,6 +338,9 @@ export type ImageConfig = ComponentStyleConfig
 
 export type TreeConfig = ComponentStyleConfig & Pick<TreeProps, 'classes' | 'styles'>
 
+export type TreeSelectConfig = ComponentStyleConfig
+  & Pick<TreeSelectProps, 'variant' | 'classes' | 'styles' | 'switcherIcon'>
+
 export interface ConfigComponentProps {
   input?: InputConfig
   inputNumber?: InputNumberConfig
@@ -356,7 +360,7 @@ export interface ConfigComponentProps {
   calendar?: ComponentStyleConfig
   carousel?: ComponentStyleConfig
   // cascader?: CascaderConfig;
-  // treeSelect?: TreeSelectConfig;
+  treeSelect?: TreeSelectConfig
   collapse?: CollapseConfig
   floatButton?: FloatButtonConfig
   floatButtonGroup?: FloatButtonGroupConfig

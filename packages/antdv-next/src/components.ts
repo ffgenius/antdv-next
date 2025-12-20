@@ -138,6 +138,8 @@ export type {
   TreeProps,
   TreeSlots,
 } from './tree'
+export { default as TreeSelect } from './tree-select'
+export type { TreeSelectEmits, TreeSelectNode, TreeSelectProps, TreeSelectSlots } from './tree-select'
 export {
   default as Typography,
   TypographyLink,

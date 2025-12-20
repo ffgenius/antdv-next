@@ -296,6 +296,9 @@ importers:
       '@v-c/tree':
         specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/tree
         version: link:../../../../../github/antdv-next/vue-components/packages/tree
+      '@v-c/tree-select':
+        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/tree-select
+        version: link:../../../../../github/antdv-next/vue-components/packages/tree-select
       '@v-c/trigger':
         specifier: ^1.0.2
         version: 1.0.2(vue@3.5.25(typescript@5.9.3))
