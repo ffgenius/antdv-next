@@ -20,7 +20,7 @@ interface RecordType {
 const mockData = ref<RecordType[]>([])
 const targetKeys = ref<TransferProps['targetKeys']>([])
 
-const getMock = () => {
+function getMock() {
   const tempTargetKeys: string[] = []
   const tempMockData: RecordType[] = []
   for (let i = 0; i < 20; i++) {
@@ -48,7 +48,7 @@ const handleChange: TransferEmits['change'] = (newTargetKeys, direction, moveKey
   targetKeys.value = newTargetKeys
 }
 
-const renderItem = (item: RecordType) => {
+function renderItem(item: RecordType) {
   const customLabel = h('span', { class: 'transfer-custom-item' }, `${item.title} - ${item.description}`)
   return {
     label: customLabel,
@@ -58,8 +58,8 @@ const renderItem = (item: RecordType) => {
 
 const panelStyles: TransferProps['styles'] = {
   section: {
-    width: 300,
-    height: 300,
+    width: '300px',
+    height: '300px',
   },
 }
 </script>

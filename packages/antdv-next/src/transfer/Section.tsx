@@ -185,21 +185,6 @@ const TransferSection = defineComponent<
       )
     }
 
-    const checkBox = (
-      <Checkbox
-        disabled={props.dataSource.filter(d => !d.disabled).length === 0 || props.disabled}
-        checked={checkStatus.value === 'all'}
-        indeterminate={checkStatus.value === 'part'}
-        class={`${listPrefixCls.value}-checkbox`}
-        onChange={() => {
-          props.onItemSelectAll?.(
-            filteredItems.value.filterItems.filter(item => !item.disabled).map(({ key }) => key),
-            checkStatus.value !== 'all',
-          )
-        }}
-      />
-    )
-
     const getSelectAllLabel = (selectedCount: number, totalCount: number) => {
       if (props.selectAllLabel) {
         return typeof props.selectAllLabel === 'function'
@@ -210,122 +195,139 @@ const TransferSection = defineComponent<
       return `${selectedCount > 0 ? `${selectedCount}/` : ''}${totalCount} ${unit}`
     }
 
-    const footerDom = props.footer && (props.footer.length < 2
-      ? props.footer(props)
-      : props.footer(props, { direction: props.direction }))
-
-    const listFooter = footerDom
-      ? (
-          <div class={clsx(`${listPrefixCls.value}-footer`, props.classes?.footer)} style={props.styles?.footer}>
-            {footerDom}
-          </div>
-        )
-      : null
-
-    const checkAllCheckbox = !props.showRemove && !props.pagination && checkBox
-
-    let items: MenuProps['items']
-
-    if (props.showRemove) {
-      items = [
-        props.pagination
-          ? {
-              key: 'removeCurrent',
-              label: props.removeCurrent,
-              onClick() {
-                const pageKeys = getEnabledItemKeys(
-                  (listBodyRef.value?.items || []).map(entity => entity.item),
-                )
-                props.onItemRemove?.(pageKeys)
-              },
-            }
-          : null,
-        {
-          key: 'removeAll',
-          label: props.removeAll,
-          onClick() {
-            props.onItemRemove?.(getEnabledItemKeys(filteredItems.value.filterItems))
-          },
-        },
-      ].filter(Boolean)
-    }
-    else {
-      items = [
-        {
-          key: 'selectAll',
-          label: checkStatus.value === 'all' ? props.deselectAll : props.selectAll,
-          onClick() {
-            const keys = getEnabledItemKeys(filteredItems.value.filterItems)
-            props.onItemSelectAll?.(keys, keys.length !== props.checkedKeys.length)
-          },
-        },
-        props.pagination
-          ? {
-              key: 'selectCurrent',
-              label: props.selectCurrent,
-              onClick() {
-                const pageItems = listBodyRef.value?.items || []
-                props.onItemSelectAll?.(getEnabledItemKeys(pageItems.map(entity => entity.item)), true)
-              },
-            }
-          : null,
-        {
-          key: 'selectInvert',
-          label: props.selectInvert,
-          onClick() {
-            const availablePageItemKeys = getEnabledItemKeys(
-              (listBodyRef.value?.items || []).map(entity => entity.item),
+    return () => {
+      const checkBox = (
+        <Checkbox
+          disabled={props.dataSource.filter(d => !d.disabled).length === 0 || props.disabled}
+          checked={checkStatus.value === 'all'}
+          indeterminate={checkStatus.value === 'part'}
+          class={`${listPrefixCls.value}-checkbox`}
+          onChange={() => {
+            props.onItemSelectAll?.(
+              filteredItems.value.filterItems.filter(item => !item.disabled).map(({ key }) => key),
+              checkStatus.value !== 'all',
             )
-            const checkedKeySet = new Set(props.checkedKeys)
-            const newCheckedKeysSet = new Set(checkedKeySet)
-            availablePageItemKeys.forEach((key) => {
-              if (checkedKeySet.has(key)) {
-                newCheckedKeysSet.delete(key)
+          }}
+        />
+      )
+
+      const footerDom = props.footer && (props.footer.length < 2
+        ? props.footer(props)
+        : props.footer(props, { direction: props.direction }))
+
+      const listFooter = footerDom
+        ? (
+            <div class={clsx(`${listPrefixCls.value}-footer`, props.classes?.footer)} style={props.styles?.footer}>
+              {footerDom}
+            </div>
+          )
+        : null
+
+      const checkAllCheckbox = !props.showRemove && !props.pagination && checkBox
+
+      let items: MenuProps['items']
+
+      if (props.showRemove) {
+        items = [
+          props.pagination
+            ? {
+                key: 'removeCurrent',
+                label: props.removeCurrent,
+                onClick() {
+                  const pageKeys = getEnabledItemKeys(
+                    (listBodyRef.value?.items || []).map(entity => entity.item),
+                  )
+                  props.onItemRemove?.(pageKeys)
+                },
               }
-              else {
-                newCheckedKeysSet.add(key)
-              }
-            })
-            props.onItemSelectAll?.(Array.from(newCheckedKeysSet), 'replace')
+            : null,
+          {
+            key: 'removeAll',
+            label: props.removeAll,
+            onClick() {
+              props.onItemRemove?.(getEnabledItemKeys(filteredItems.value.filterItems))
+            },
           },
-        },
-      ].filter(Boolean)
-    }
-
-    const dropdown = (
-      <Dropdown class={`${listPrefixCls.value}-header-dropdown`} menu={{ items }} disabled={props.disabled}>
-        {isValidIcon(props.selectionsIcon) ? props.selectionsIcon : <DownOutlined />}
-      </Dropdown>
-    )
-
-    return () => (
-      <div
-        class={clsx(sectionPrefixCls.value, props.classes?.section, {
-          [`${sectionPrefixCls.value}-with-pagination`]: !!props.pagination,
-          [`${sectionPrefixCls.value}-with-footer`]: !!footerDom,
-        })}
-        style={{ ...props.style, ...props.styles?.section }}
-      >
-        <div class={clsx(`${listPrefixCls.value}-header`, props.classes?.header)} style={props.styles?.header}>
-          {props.showSelectAll
-            ? (
-                <>
-                  {checkAllCheckbox}
-                  {dropdown}
-                </>
+        ].filter(Boolean)
+      }
+      else {
+        items = [
+          {
+            key: 'selectAll',
+            label: checkStatus.value === 'all' ? props.deselectAll : props.selectAll,
+            onClick() {
+              const keys = getEnabledItemKeys(filteredItems.value.filterItems)
+              props.onItemSelectAll?.(keys, keys.length !== props.checkedKeys.length)
+            },
+          },
+          props.pagination
+            ? {
+                key: 'selectCurrent',
+                label: props.selectCurrent,
+                onClick() {
+                  const pageItems = listBodyRef.value?.items || []
+                  props.onItemSelectAll?.(getEnabledItemKeys(pageItems.map(entity => entity.item)), true)
+                },
+              }
+            : null,
+          {
+            key: 'selectInvert',
+            label: props.selectInvert,
+            onClick() {
+              const availablePageItemKeys = getEnabledItemKeys(
+                (listBodyRef.value?.items || []).map(entity => entity.item),
               )
-            : null}
-          <span class={`${listPrefixCls.value}-header-selected`}>
-            {getSelectAllLabel(checkedActiveItems.value.length, filteredItems.value.filterItems.length)}
-          </span>
-          <span class={clsx(`${listPrefixCls.value}-header-title`, props.classes?.title)} style={props.styles?.title}>
-            {props.titleText}
-          </span>
+              const checkedKeySet = new Set(props.checkedKeys)
+              const newCheckedKeysSet = new Set(checkedKeySet)
+              availablePageItemKeys.forEach((key) => {
+                if (checkedKeySet.has(key)) {
+                  newCheckedKeysSet.delete(key)
+                }
+                else {
+                  newCheckedKeysSet.add(key)
+                }
+              })
+              props.onItemSelectAll?.(Array.from(newCheckedKeysSet), 'replace')
+            },
+          },
+        ].filter(Boolean)
+      }
+
+      const dropdown = (
+        <Dropdown class={`${listPrefixCls.value}-header-dropdown`} menu={{ items }} disabled={props.disabled}>
+          {isValidIcon(props.selectionsIcon) ? props.selectionsIcon : <DownOutlined />}
+        </Dropdown>
+      )
+
+      return (
+        <div
+          class={clsx(sectionPrefixCls.value, props.classes?.section, {
+            [`${sectionPrefixCls.value}-with-pagination`]: !!props.pagination,
+            [`${sectionPrefixCls.value}-with-footer`]: !!footerDom,
+          })}
+          style={{ ...props.style, ...props.styles?.section }}
+        >
+          <div class={clsx(`${listPrefixCls.value}-header`, props.classes?.header)} style={props.styles?.header}>
+            {props.showSelectAll
+              ? (
+                  <>
+                    {checkAllCheckbox}
+                    {dropdown}
+                  </>
+                )
+              : null}
+            <span class={`${listPrefixCls.value}-header-selected`}>
+              {getSelectAllLabel(checkedActiveItems.value.length, filteredItems.value.filterItems.length)}
+            </span>
+            <span class={clsx(`${listPrefixCls.value}-header-title`, props.classes?.title)} style={props.styles?.title}>
+              {props.titleText}
+            </span>
+          </div>
+          {renderListBody()}
+          {listFooter}
         </div>
-        {renderListBody()}
-        {listFooter}
-      </div>
-    )
+      )
+    }
   },
   {
     name: 'ATransferList',

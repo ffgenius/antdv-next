@@ -2,7 +2,6 @@ import type { MenuInfo, MenuItemProps, RenderIconInfo, SelectInfo, MenuProps as 
 import type { CSSProperties, SlotsType } from 'vue'
 import type { SemanticClassNames, SemanticStyles } from '../_util/hooks'
 import type { VueNode } from '../_util/type.ts'
-import type { SiderContextProps } from '../layout/Sider'
 import type { ItemType } from './interface.ts'
 import type { MenuContextProps, MenuTheme } from './MenuContext'
 import { EllipsisOutlined } from '@antdv-next/icons'
@@ -119,7 +118,8 @@ export interface MenuProps extends Omit<
 }
 
 type InternalMenuProps = MenuProps
-  & SiderContextProps & {
+  & {
+    siderCollapsed?: boolean
     collapsedWidth?: string | number
   }
 

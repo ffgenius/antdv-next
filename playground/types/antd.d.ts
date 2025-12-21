@@ -100,5 +100,6 @@ declare module 'vue' {
     AUpload: typeof import('antdv-next')['Upload']
     AUploadDragger: typeof import('antdv-next')['UploadDragger']
     APagination: typeof import('antdv-next')['Pagination']
+    ATransfer: typeof import('antdv-next')['Transfer']
   }
 }

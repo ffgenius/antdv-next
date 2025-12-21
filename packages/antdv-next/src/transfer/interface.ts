@@ -140,7 +140,7 @@ export interface TransferProps<RecordType = any> extends ComponentBaseProps {
   targetKeys?: TransferKey[]
   selectedKeys?: TransferKey[]
   render?: TransferRender<RecordType>
-
+  labelRender?: VueNode
   titles?: VueNode[]
   /** @deprecated Please use `actions` instead. */
   operations?: VueNode[]
@@ -171,6 +171,9 @@ export interface TransferEmits {
 export interface TransferSlots<RecordType = any> {
   default?: (props: TransferCustomListBodyProps<RecordType>) => any
   render?: (item: RecordType) => any
+  labelRender?: (item: RecordType) => any
   footer?: (props: { props: TransferListProps<RecordType>, info?: { direction: TransferDirection } }) => any
   selectionsIcon?: () => any
+  titles?: () => any
+  actions?: () => any
 }
