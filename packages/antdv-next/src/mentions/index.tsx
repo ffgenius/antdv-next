@@ -71,8 +71,11 @@ export interface MentionProps extends
   classes?: MentionsClassNamesType
   styles?: MentionsStylesType
   size?: SizeType
-  labelRender?: (option: MentionsOptionProps) => any
-  contentRender?: (option: MentionsOptionProps) => any
+  labelRender?: (ctx: { option: MentionsOptionProps, index: number }) => any
+  allowClear?: boolean | {
+    clearIcon?: VueNode
+  }
+  disabled?: boolean
 }
 
 export interface MentionsEmits {
@@ -89,8 +92,7 @@ export interface MentionsEmits {
 export interface MentionsSlots {
   suffix?: () => any
   default?: () => any
-  labelRender?: (option: MentionsOptionProps) => any
-  contentRender?: (option: MentionsOptionProps) => any
+  labelRender?: (ctx: { option: MentionsOptionProps, index: number }) => any
 }
 
 export interface MentionsProps extends MentionProps {}
@@ -234,8 +236,8 @@ const InternalMentions = defineComponent<
 
     const mergedFilterOption = computed(() => (props.loading ? loadingFilterOption : props.filterOption))
 
-    const resolveRenderNode = (key: 'labelRender' | 'contentRender', option: MentionsOptionProps) => {
-      const node = getSlotPropsFnRun(slots, props, key, false, option)
+    const resolveRenderNode = (key: 'labelRender', ctx: { option: MentionsOptionProps, index: number }) => {
+      const node = getSlotPropsFnRun(slots, props, key, false, ctx)
       return node === undefined ? undefined : node
     }
 
@@ -252,14 +254,11 @@ const InternalMentions = defineComponent<
       if (!props.options) {
         return undefined
       }
-      return props.options.map((option) => {
-        const labelNode = resolveRenderNode('labelRender', option)
-        const contentNode = resolveRenderNode('contentRender', option)
-        const mergedContent = contentNode ?? option.content
-        const mergedLabel = labelNode ?? option.label ?? mergedContent ?? option.value
+      return props.options.map((option, index) => {
+        const labelNode = resolveRenderNode('labelRender', { option, index })
+        const mergedLabel = labelNode ?? option.label ?? option.value
         return {
           ...option,
-          content: mergedContent,
           label: mergedLabel,
         }
       })
@@ -309,7 +308,7 @@ const InternalMentions = defineComponent<
           )
         : (props.options !== undefined
             ? null
-            : filterEmpty(slots.default?.() ?? []).filter(node => node != null))
+            : filterEmpty(slots.default?.() ?? []).filter(Boolean))
 
       const mergedPopupClassName = clsx(
         mergedClassNames.value.popup,
@@ -339,7 +338,6 @@ const InternalMentions = defineComponent<
         ),
         affixWrapper: hashId.value,
       }
-
       const mergedStylesValue = {
         textarea: mergedStyles.value.textarea,
         popup: mergedStyles.value.popup,
@@ -347,7 +345,6 @@ const InternalMentions = defineComponent<
       }
 
       const restProps = omit(props, omitKeys as any)
-
       return (
         <VcMentions
           ref={mentionsRef as any}
