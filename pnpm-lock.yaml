@@ -248,6 +248,9 @@ importers:
       '@v-c/menu':
         specifier: ^1.0.1
         version: 1.0.1(vue@3.5.25(typescript@5.9.3))
+      '@v-c/metions':
+        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/mentions
+        version: link:../../../../../github/antdv-next/vue-components/packages/mentions
       '@v-c/mutate-observer':
         specifier: 'catalog:'
         version: 0.0.2(vue@3.5.25(typescript@5.9.3))
