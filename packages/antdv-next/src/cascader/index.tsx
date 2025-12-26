@@ -134,8 +134,11 @@ export interface CascaderProps<
     | 'onChange'
     | 'onSearch'
     | 'onPopupVisibleChange'
+    | 'multiple'
+    | 'value'
   > {
-  multiple?: Multiple
+  value?: any
+  multiple?: boolean
   size?: SizeType
   /**
    * @deprecated `showArrow` is deprecated which will be removed in next major version. It will be a

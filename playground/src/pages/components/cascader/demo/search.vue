@@ -52,18 +52,19 @@ const onChange: CascaderEmits['change'] = (value, selectedOptions) => {
   console.log(value, selectedOptions)
 }
 
-const handleSearch = (value: string) => {
+function handleSearch(value: string) {
   console.log(value)
 }
 
-const filter = (inputValue: string, path: Option[]) =>
-  path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
+function filter(inputValue: string, path: Option[]) {
+  return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
+}
 </script>
 
 <template>
   <a-cascader
     :options="options"
-    :show-search="{ filter, onSearch: handleSearch }"
+    :show-search="{ filter, onSearch: handleSearch } as any"
     placeholder="Please select"
     @change="onChange"
   />

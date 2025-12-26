@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CascaderEmits } from 'antdv-next'
 import { Cascader } from 'antdv-next'
+import { shallowRef } from 'vue'
 
 const SHOW_CHILD = Cascader.SHOW_CHILD
 
@@ -48,30 +49,33 @@ const options: Option[] = [
 const onChange: CascaderEmits['change'] = (value) => {
   console.log(value)
 }
+const value = shallowRef([
+  ['bamboo', 'little', 'fish'],
+  ['bamboo', 'little', 'cards'],
+  ['bamboo', 'little', 'bird'],
+] as any)
+
+const value1 = shallowRef([['bamboo']])
 </script>
 
 <template>
   <a-cascader
+    v-model:value="value"
     style="width: 100%"
     :options="options"
     multiple
     max-tag-count="responsive"
     :show-checked-strategy="SHOW_CHILD"
-    :default-value="[
-      ['bamboo', 'little', 'fish'],
-      ['bamboo', 'little', 'cards'],
-      ['bamboo', 'little', 'bird'],
-    ]"
     @change="onChange"
   />
   <br>
   <br>
   <a-cascader
+    v-model:value="value1"
     style="width: 100%"
     :options="options"
     multiple
     max-tag-count="responsive"
-    :default-value="[['bamboo']]"
     @change="onChange"
   />
 </template>
