@@ -1,5 +1,6 @@
 import type { App, Plugin } from 'vue'
 import * as components from './components'
+import version from './version'
 
 export { useResponsive } from './_util/hooks/useResponsive'
 let prefix = 'A'
@@ -17,8 +18,13 @@ export default {
       }
     })
   },
+  version,
 } as Plugin
 
 export { useBreakpoint } from './grid'
 
 export { default as theme } from './theme'
+
+export {
+  version,
+}

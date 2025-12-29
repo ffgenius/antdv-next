@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MenuEmits } from 'antdv-next'
 import { GithubOutlined } from '@antdv-next/icons'
+import { version } from 'antdv-next'
 import { storeToRefs } from 'pinia'
 import { ref, shallowRef, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -16,12 +17,12 @@ const appStore = useAppStore()
 const { headerKey } = storeToRefs(appStore)
 const versions = ref([
   {
-    label: '1.0.0',
-    value: '1.0.0',
+    label: version,
+    value: version,
   },
 ])
 const { isMobile } = useMobile()
-const currentVersion = shallowRef('1.0.0')
+const currentVersion = shallowRef(version)
 const searchValue = shallowRef()
 const router = useRouter()
 const handleHeaderChange: MenuEmits['click'] = (info) => {

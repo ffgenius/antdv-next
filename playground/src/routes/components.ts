@@ -1,17 +1,14 @@
 // 文档分了中文文档和英文文档的加载
 import type { RouteRecordRaw } from 'vue-router'
 
-const cnDocs = import.meta.glob('/src/pages/components/*/index.zh-CN.md', { eager: true, import: 'default' })
-const enDocs = import.meta.glob('/src/pages/components/*/index.en-US.md', { eager: true, import: 'default' })
+const cnDocs = import.meta.glob('/src/pages/components/*/index.zh-CN.md')
+const enDocs = import.meta.glob('/src/pages/components/*/index.en-US.md')
 const otherDocs = import.meta.glob([
   '/src/pages/**/*.zh-CN.md',
   '/src/pages/**/*.en-US.md',
   '!/src/pages/components/*/index.zh-CN.md',
   '!/src/pages/components/*/index.en-US.md',
-], {
-  eager: true,
-  import: 'default',
-})
+])
 export function generateDocRoutes() {
   const routes: RouteRecordRaw[] = []
   // 处理中文文档

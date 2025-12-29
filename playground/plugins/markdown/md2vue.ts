@@ -103,7 +103,22 @@ export function md2VuePlugin(options: CreateMarkdownOptions = {}): PluginOption 
     allowStale: true,
     updateAgeOnGet: true,
   })
+
+  async function transform(code: string, id: string) {
+    const key = shortHash(code)
+    if (cache.has(key)) {
+      return cache.get(key) as string
+    }
+    const env: MarkdownItEnv = {
+      id,
+    }
+    const html = await md.renderAsync(code, env)
+    const vueCode = md2Vue(html, env)
+    cache.set(key, vueCode)
+    return vueCode
+  }
   return {
+    enforce: 'pre',
     configResolved(config) {
       md = useMarkdown({
         root: pathe.resolve(config.root ?? process.cwd(), '.'),
@@ -113,21 +128,22 @@ export function md2VuePlugin(options: CreateMarkdownOptions = {}): PluginOption 
     name: 'vite:md2vue',
     transform: {
       filter: {
-        id: /\.md$/,
+        id: /\.md($|\?)/,
       },
       async handler(code, id) {
-        const key = shortHash(code)
-        if (cache.has(key)) {
-          return cache.get(key) as string
-        }
-        const env: MarkdownItEnv = {
-          id,
-        }
-        const html = await md.renderAsync(code, env)
-        const vueCode = md2Vue(html, env)
-        cache.set(key, vueCode)
-        return vueCode
+        return transform(code, id)
       },
+    },
+    handleHotUpdate(ctx) {
+      const { file, read } = ctx
+      if (!file.endsWith('.md'))
+        return
+      const defaultRead = read
+
+      ctx.read = async () => {
+        const code = await defaultRead()
+        return transform(code, ctx.file)
+      }
     },
   }
 }
