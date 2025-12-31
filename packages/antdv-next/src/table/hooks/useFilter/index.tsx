@@ -91,7 +91,6 @@ function injectFilter<RecordType extends AnyObject = AnyObject>(
     if (newColumn.filters || newColumn.filterDropdown) {
       const columnKey = getColumnKey(newColumn, columnPos)
       const filterState = filterStates.find(({ key }) => columnKey === key)
-
       newColumn = {
         ...newColumn,
         title: (renderProps: ColumnTitleProps<RecordType>) => (
@@ -99,16 +98,16 @@ function injectFilter<RecordType extends AnyObject = AnyObject>(
             tablePrefixCls={prefixCls}
             prefixCls={`${prefixCls}-filter`}
             dropdownPrefixCls={dropdownPrefixCls}
-            column={newColumn}
-            filterDropdownRender={filterDropdown}
-            filterIconRender={filterIcon}
+            column={newColumn as any}
+            filterDropdownRender={filterDropdown as any}
+            filterIconRender={filterIcon as any}
             columnKey={columnKey}
-            filterState={filterState}
+            filterState={filterState as any}
             filterOnClose={filterOnClose}
             filterMultiple={filterMultiple}
             filterMode={filterMode}
             filterSearch={filterSearch}
-            triggerFilter={triggerFilter}
+            triggerFilter={triggerFilter as any}
             locale={locale}
             getPopupContainer={getPopupContainer}
             rootClassName={rootClassName}

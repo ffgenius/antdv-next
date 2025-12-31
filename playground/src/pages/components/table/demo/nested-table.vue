@@ -73,7 +73,7 @@ const ABadge = resolveComponent('ABadge') as any
 const ADropdown = resolveComponent('ADropdown') as any
 const ASpace = resolveComponent('ASpace') as any
 
-const renderInnerBodyCell = ({ column }: { column: any }) => {
+function renderInnerBodyCell({ column }: { column: any }) {
   if (column.key === 'state') {
     return h(ABadge, { status: 'success', text: 'Finished' })
   }
@@ -93,7 +93,7 @@ const renderInnerBodyCell = ({ column }: { column: any }) => {
   return undefined
 }
 
-const renderOuterBodyCell = ({ column }: { column: any }) => {
+function renderOuterBodyCell({ column }: { column: any }) {
   if (column.key === 'operation') {
     return h('a', 'Publish')
   }
@@ -108,15 +108,17 @@ const tableSlots = {
   bodyCell: renderOuterBodyCell,
 }
 
-const expandedRowRender = () => h(
-  ATable,
-  {
-    columns: expandColumns,
-    dataSource: expandDataSource,
-    pagination: false,
-  },
-  innerTableSlots,
-)
+function expandedRowRender() {
+  return h(
+    ATable,
+    {
+      columns: expandColumns,
+      dataSource: expandDataSource,
+      pagination: false,
+    },
+    innerTableSlots,
+  )
+}
 
 const expandable = {
   expandedRowRender,

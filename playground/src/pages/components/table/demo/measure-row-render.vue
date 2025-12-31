@@ -20,7 +20,7 @@ interface DataType {
 
 type DataIndex = keyof DataType
 
-type FilterColumn = {
+interface FilterColumn {
   dataIndex?: DataIndex | DataIndex[]
   filters?: Array<{ text: string, value: string | number }>
   filterMultiple?: boolean
@@ -37,7 +37,7 @@ const searchText = ref('')
 const searchedColumn = ref<DataIndex | ''>('')
 const searchInput = ref<any>(null)
 
-const searchColumnKeys: DataIndex[] = ['name', 'address']
+const searchColumnKeys: DataIndex[] = ['name']
 
 function getDataIndex(column: FilterColumn): DataIndex | null {
   const dataIndex = column?.dataIndex
@@ -67,13 +67,6 @@ function handleFilter(selectedKeys: string[], confirm: any, dataIndex: DataIndex
 function handleReset(clearFilters?: () => void) {
   clearFilters?.()
   searchText.value = ''
-}
-
-function getFilterOptions(column: FilterColumn) {
-  return (column?.filters || []).map(filter => ({
-    label: filter.text,
-    value: String(filter.value),
-  }))
 }
 
 function getHighlightParts(text: string, keyword: string) {
@@ -153,7 +146,7 @@ const columns: TableProps['columns'] = [
       <FilterFilled v-else />
     </template>
     <template #filterDropdown="{ column, setSelectedKeys, selectedKeys, confirm, clearFilters, close }">
-      <template v-if="isSearchColumn(column as any)">
+      <template v-if=" isSearchColumn(column as any)">
         <div class="p-8px" @keydown.stop>
           <a-input
             ref="searchInput"
@@ -197,23 +190,6 @@ const columns: TableProps['columns'] = [
               close
             </a-button>
           </a-space>
-        </div>
-      </template>
-      <template v-else-if="(column as any).filters?.length">
-        <div class="p-8px" @keydown.stop>
-          <a-checkbox-group
-            :options="getFilterOptions(column as any)"
-            :value="selectedKeys"
-            @update:value="value => setSelectedKeys((value as string[]).map(String))"
-          />
-          <div class="ant-table-filter-dropdown-btns">
-            <a-button type="link" size="small" :disabled="!(selectedKeys as string[]).length" @click="clearFilters?.()">
-              Reset
-            </a-button>
-            <a-button type="primary" size="small" @click="confirm()">
-              OK
-            </a-button>
-          </div>
         </div>
       </template>
     </template>

@@ -147,7 +147,7 @@ const CheckboxGroup = defineComponent<
                     onChange: option.onChange,
                   }
                 }
-                class={clsx(`${groupPrefixCls}-item`, option.class)}
+                class={clsx(`${groupPrefixCls.value}-item`, option.class)}
                 style={option.style}
                 title={option.title}
                 id={option.id}

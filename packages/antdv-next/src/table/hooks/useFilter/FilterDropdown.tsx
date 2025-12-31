@@ -2,7 +2,7 @@ import type { CheckboxChangeEvent } from '@v-c/checkbox'
 import type { EventDataNode, DataNode as FieldDataNode } from '@v-c/tree'
 import type { SlotsType } from 'vue'
 import type { AnyObject } from '../../../_util/type.ts'
-import type { DropdownEmits, DropdownProps } from '../../../dropdown'
+import type { DropdownEmits } from '../../../dropdown'
 
 import type { MenuProps } from '../../../menu'
 import type {
@@ -20,6 +20,7 @@ import type { FilterState } from './index.tsx'
 import { FilterFilled } from '@antdv-next/icons'
 import { clsx } from '@v-c/util'
 import isEqual from '@v-c/util/dist/isEqual'
+import { filterEmpty } from '@v-c/util/dist/props-util'
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import extendsObject from '../../../_util/extendsObject.ts'
 import { toPropsRefs } from '../../../_util/tools.ts'
@@ -169,7 +170,7 @@ const FilterDropdown = defineComponent<
 >(
   (props = defaults, { slots }) => {
     const { filterMode, filterSearch, column } = toPropsRefs(props, 'filterSearch', 'filterMode', 'column')
-    const filterDropdownProps = computed(() => column?.value ?? ({} as DropdownProps))
+    const filterDropdownProps = computed<Record<string, any>>(() => column?.value?.filterDropdownProps ?? {})
 
     const visible = shallowRef(false)
     const filtered = computed(() => {
@@ -182,7 +183,7 @@ const FilterDropdown = defineComponent<
 
     const triggerVisible = (newVisible: boolean) => {
       visible.value = newVisible
-      ;(filterDropdownProps.value as any).onOpenChange?.(newVisible)
+      filterDropdownProps.value.onOpenChange?.(newVisible)
       column.value.onFilterDropdownOpenChange?.(newVisible)
     }
 
@@ -203,8 +204,9 @@ const FilterDropdown = defineComponent<
       )
     }
 
+    let hasPropDropdownRender = false
     const mergedVisible = computed(() => {
-      return (filterDropdownProps.value as any)?.open ?? column.value.filterDropdownOpen ?? visible.value
+      return filterDropdownProps.value?.open ?? column.value.filterDropdownOpen ?? visible.value
     })
 
     const propFilteredKeys = computed(() => props.filterState?.filteredKeys)
@@ -314,7 +316,7 @@ const FilterDropdown = defineComponent<
 
         triggerVisible(newVisible)
 
-        if (!newVisible && !filterDropdownDefined.value && props.filterOnClose) {
+        if (!newVisible && !hasPropDropdownRender && props.filterOnClose) {
           onConfirm()
         }
       }
@@ -389,8 +391,25 @@ const FilterDropdown = defineComponent<
           },
         }
 
+        let filterNode = null
         if (props.filterDropdownRender) {
-          dropdownContent = props.filterDropdownRender({ ...baseDropdownProps, column: column.value })
+          const node = props.filterDropdownRender({ ...baseDropdownProps, column: column.value })
+          if (node) {
+            const _filterDropdown = filterEmpty(Array.isArray(node) ? node : [node])
+            if (_filterDropdown && _filterDropdown.length > 0) {
+              filterNode = _filterDropdown.length === 1 ? _filterDropdown[0] : _filterDropdown
+              hasPropDropdownRender = true
+            }
+            else {
+              hasPropDropdownRender = false
+            }
+          }
+          else {
+            hasPropDropdownRender = false
+          }
+        }
+        if (filterNode) {
+          dropdownContent = filterNode
         }
         else if (typeof column.value.filterDropdown === 'function') {
           dropdownContent = column.value.filterDropdown({
@@ -576,8 +595,8 @@ const FilterDropdown = defineComponent<
       const dropdownContent = getDropdownContent()
       const dropdownRootClassName = clsx(
         props.rootClassName,
-        (filterDropdownProps.value as any).rootClassName,
-        (filterDropdownProps.value as any).rootClass,
+        filterDropdownProps.value.rootClassName,
+        filterDropdownProps.value.rootClass,
       )
       const mergedDropdownProps = extendsObject(
         {
@@ -588,15 +607,15 @@ const FilterDropdown = defineComponent<
           rootClass: dropdownRootClassName,
         },
         {
-          ...(filterDropdownProps as any),
+          ...filterDropdownProps.value,
           open: mergedVisible.value,
           onOpenChange: onVisibleChange,
           popupRender: () => {
-            if (typeof (filterDropdownProps as any).popupRender === 'function') {
-              return (filterDropdownProps as any).popupRender(dropdownContent)
+            if (typeof filterDropdownProps.value.popupRender === 'function') {
+              return filterDropdownProps.value.popupRender(dropdownContent)
             }
-            if (typeof (filterDropdownProps as any).dropdownRender === 'function') {
-              return (filterDropdownProps as any).dropdownRender(dropdownContent)
+            if (typeof filterDropdownProps.value.dropdownRender === 'function') {
+              return filterDropdownProps.value.dropdownRender(dropdownContent)
             }
             return dropdownContent
           },
@@ -606,7 +625,7 @@ const FilterDropdown = defineComponent<
       return (
         <div class={`${props.prefixCls}-column`}>
           <span class={`${props.tablePrefixCls}-column-title`}>{getTitle()}</span>
-          <Dropdown {...mergedDropdownProps}>
+          <Dropdown {...mergedDropdownProps as any}>
             {getDropdownTrigger()}
           </Dropdown>
         </div>
