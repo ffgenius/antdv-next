@@ -86,7 +86,6 @@ const IconNode = defineComponent<IconNodeProps>(
     return () => {
       const { type, prefixCls, icon } = props
       const iconType = iconMapFilled[type!] || null
-      // @ts-expect-error this
       const iconNode = filterEmpty(typeof icon === 'function' ? icon() : icon)[0]
       if (iconNode) {
         return replaceElement(iconNode, <span class={[`${prefixCls}-icon`]}>{iconNode}</span>, () => ({
