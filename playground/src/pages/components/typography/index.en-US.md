@@ -30,11 +30,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
 
-### Typography.Text
+### Typography.Text {#typography-text}
+
+#### Property
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -53,7 +53,15 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | TypographyClassNamesType | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | TypographyStylesType | - |
 
-### Typography.Title
+#### Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| click | Set the handler to handle click event | (event: MouseEvent) => void |
+
+### Typography.Title {#typography-title}
+
+#### Property
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -71,7 +79,15 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | TypographyClassNamesType | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | TypographyStylesType | - |
 
-### Typography.Paragraph
+#### Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| click | Set the handler to handle click event | (event: MouseEvent) => void |
+
+### Typography.Paragraph {#typography-paragraph}
+
+#### Property
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -89,13 +105,13 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | TypographyClassNamesType | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | TypographyStylesType | - |
 
-### Events {#events}
+#### Events
 
 | Event | Description | Type |
 | --- | --- | --- |
 | click | Set the handler to handle click event | (event: MouseEvent) => void |
 
-### copyable
+### copyable {#copyable}
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -105,7 +121,13 @@ Common props ref：[Common props](/docs/vue/common-props)
 | tooltips | Custom tooltip text, hide when it is false | \[VueNode, VueNode] | \[`Copy`, `Copied`] |
 | tabIndex | Set tabIndex of the copy button | number | 0 |
 
-### editable
+#### Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| copy | Called when copied text | (event: MouseEvent) => void |
+
+### editable {#editable}
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -119,7 +141,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | enterIcon | Custom "enter" icon in the edit field (passing `null` removes the icon) | VueNode | `<EnterOutlined />` |
 | tabIndex | Set tabIndex of the edit button | number | 0 |
 
-### Events {#events-editable}
+#### Events
 
 | Event | Description | Type |
 | --- | --- | --- |
@@ -128,7 +150,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | start | Called when enter editable state | () => void |
 | end | Called when type ENTER to exit editable state | () => void |
 
-### ellipsis
+### ellipsis {#ellipsis}
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -140,7 +162,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | defaultExpanded | Default expand or collapse | boolean | - |
 | expanded | Expand or Collapse | boolean | - |
 
-### Events {#events-ellipsis}
+#### Events
 
 | Event | Description | Type |
 | --- | --- | --- |

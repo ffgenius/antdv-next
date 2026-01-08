@@ -31,11 +31,11 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 ## API
 
-### 属性 {#property}
-
 通用属性参考：[通用属性](/docs/vue/common-props)
 
-### Typography.Text
+### Typography.Text {#typography-text}
+
+#### 属性
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -54,7 +54,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TypographyClassNamesType | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TypographyStylesType | - |
 
-### Typography.Title
+#### 事件
+
+| 事件 | 说明 | 类型 |
+| --- | --- | --- |
+| click | 点击时的回调 | (event: MouseEvent) => void |
+
+### Typography.Title {#typography-title}
+
+#### 属性
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -72,7 +80,15 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TypographyClassNamesType | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TypographyStylesType | - |
 
-### Typography.Paragraph
+#### 事件
+
+| 事件 | 说明 | 类型 |
+| --- | --- | --- |
+| click | 点击时的回调 | (event: MouseEvent) => void |
+
+### Typography.Paragraph {#typography-paragraph}
+
+#### 属性
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -90,13 +106,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TypographyClassNamesType | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TypographyStylesType | - |
 
-### 事件 {#events}
+#### 事件
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
 | click | 点击时的回调 | (event: MouseEvent) => void |
 
-### copyable
+### copyable 配置 {#copyable}
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -106,7 +122,13 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | tooltips | 自定义提示文案，为 false 时隐藏文案 | \[VueNode, VueNode] | \[`复制`, `复制成功`] |
 | tabIndex | 自定义复制按钮的 tabIndex | number | 0 |
 
-### editable
+#### 事件
+
+| 事件 | 说明 | 类型 |
+| --- | --- | --- |
+| copy | 拷贝成功的回调函数 | (event: MouseEvent) => void |
+
+### editable 配置 {#editable}
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -120,7 +142,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | enterIcon | 在编辑段中自定义"enter"图标（传递"null"将删除图标） | VueNode | `<EnterOutlined />` |
 | tabIndex | 自定义编辑按钮的 tabIndex | number | 0 |
 
-### 事件 {#events-editable}
+#### 事件
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
@@ -129,7 +151,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | start | 进入编辑中状态时触发 | () => void |
 | end | 按 ENTER 结束编辑状态时触发 | () => void |
 
-### ellipsis
+### ellipsis 配置 {#ellipsis}
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -141,7 +163,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | defaultExpanded | 默认展开或收起 | boolean | - |
 | expanded | 展开或收起 | boolean | - |
 
-### 事件 {#events-ellipsis}
+#### 事件
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
