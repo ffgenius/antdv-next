@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+分割线中带有文字，可以用 `title-placement` 指定文字位置。
+</docs>
+
+<docs lang="en-US">
+Divider with inner text, use `title-placement` to align it.
+</docs>
+
 <template>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista

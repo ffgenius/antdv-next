@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过 `variant` 设置分割线的样式,可选 `solid`、`dashed` 和 `dotted`。
+</docs>
+
+<docs lang="en-US">
+You can use `variant` to set the style of Divider, options are `solid`, `dashed` and `dotted`.
+</docs>
+
 <template>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista

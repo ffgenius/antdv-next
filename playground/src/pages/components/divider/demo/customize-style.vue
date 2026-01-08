@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+自定义分割线的样式。
+</docs>
+
+<docs lang="en-US">
+Customize the style of the divider.
+</docs>
+
 <template>
   <a-divider :style="{ borderWidth: '2px', borderColor: '#7cb305' }" />
   <a-divider :style="{ borderColor: '#7cb305' }" dashed />

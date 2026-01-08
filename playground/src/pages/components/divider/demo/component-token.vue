@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过配置 `ConfigProvider` 的 `theme` 属性来自定义分割线组件的 Token。
+</docs>
+
+<docs lang="en-US">
+Customize the component token of Divider by `theme` property of `ConfigProvider`.
+</docs>
+
 <template>
   <a-config-provider
     :theme="{
