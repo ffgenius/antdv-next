@@ -31,6 +31,7 @@ export default defineConfig({
     port: 3322,
   },
   optimizeDeps: {
+    // include: ['@antdv-next/icons'],
     exclude: [
       '@v-c/segmented',
       '@v-c/trigger',

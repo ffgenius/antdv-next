@@ -106,7 +106,7 @@ const localeValue = computed(() => {
         </h1>
       </a-col>
       <a-col :xxl="20" :xl="19" :lg="18" :md="18" :sm="0" :xs="0">
-        <div class="ant-doc-header-right flex items-center pr-(--ant-padding) gap-sm h-full">
+        <div class="ant-doc-header-right flex items-center pr-[var(--ant-padding)] gap-sm h-full">
           <div class="b-l-1 b-l-solid b-l-black/6 flex items-center m-0" style="flex: auto">
             <SearchIcon class="ant-doc-search-bar-svg" />
             <input v-model="searchValue" class="ant-doc-search-bar-input" placeholder="输入关键字搜索...">
