@@ -108,6 +108,7 @@ catalog:
   typescript: ~5.9.3
   unocss: ^66.5.10
   vite: ^8.0.0-beta.5
+  vite-plugin-dayjs: ^1.0.1
   vite-plugin-inspect: ^11.3.3
   vite-plugin-tsx-resolve-types: ^1.0.1-beta.5
   vitest: ^3.2.4
