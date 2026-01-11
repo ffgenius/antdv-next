@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+垂直分割面板。
+</docs>
+
+<docs lang="en-US">
+Vertical split panel.
+</docs>
+
 <template>
   <a-splitter orientation="vertical" style="height: 300px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
     <a-splitter-panel>

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+可折叠的面板。
+</docs>
+
+<docs lang="en-US">
+Collapsible panel.
+</docs>
+
 <template>
   <a-flex vertical gap="middle">
     <a-splitter style="height: 200px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">

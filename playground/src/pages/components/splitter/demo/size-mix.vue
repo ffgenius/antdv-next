@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+混合使用像素和百分比来设置面板大小。
+</docs>
+
+<docs lang="en-US">
+Mix using pixels and percentages to set panel size.
+</docs>
+
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 

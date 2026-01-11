@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过 `size` 和 `onResize` 控制面板大小。
+</docs>
+
+<docs lang="en-US">
+Control panel size with `size` and `onResize`.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

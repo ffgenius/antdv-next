@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过 `showCollapsibleIcon` 控制折叠图标的显示。
+</docs>
+
+<docs lang="en-US">
+Control the display of collapsible icon with `showCollapsibleIcon`.
+</docs>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 

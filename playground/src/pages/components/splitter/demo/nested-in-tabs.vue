@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+在 Tabs 组件中嵌套 Splitter。
+</docs>
+
+<docs lang="en-US">
+Nested Splitter in Tabs component.
+</docs>
+
 <script setup lang="ts">
 import { shallowRef } from 'vue'
 

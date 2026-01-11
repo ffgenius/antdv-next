@@ -2,53 +2,84 @@
 category: Components
 group: Layout
 title: Splitter
-description: Split panels to isolate
+description: Split panels to isolate content.
 cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*f0SISaETY0wAAAAAAAAAAAAADrJ8AQ/original
 coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*y92yRYhObU8AAAAAAAAAAAAADrJ8AQ/original
 demo:
   cols: 1
+tag: 5.21.0
 ---
 
 <DocHeading></DocHeading>
 
-## When To Use {#when-to-use}
+## When To Use
+
+Provide a draggable split panel for creating complex multi-column or multi-row layouts.
 
 ## Examples {#examples}
 
 <demo-group>
+  <demo src="./demo/size.vue">Basic</demo>
+  <demo src="./demo/vertical.vue">Vertical</demo>
+  <demo src="./demo/control.vue">Controlled</demo>
+  <demo src="./demo/collapsible.vue">Collapsible</demo>
+  <demo src="./demo/collapsibleIcon.vue">Collapsible Icon</demo>
+  <demo src="./demo/multiple.vue">Multiple</demo>
+  <demo src="./demo/group.vue">Layout Group</demo>
+  <demo src="./demo/size-mix.vue">Size Mix</demo>
+  <demo src="./demo/lazy.vue">Lazy</demo>
+  <demo src="./demo/nested-in-tabs.vue" debug>Nested In Tabs</demo>
+  <demo src="./demo/style-class.vue">Custom semantic dom styling</demo>
 </demo-group>
 
 ## API
 
-### Property {#property}
-
 Common props ref：[Common props](/docs/vue/common-props)
 
-| Property | Description | Type                                         | Default | Version |
-| --- | --- |----------------------------------------------| --- | --- |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | SplitterClassNamesType | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | SplitterStylesType | - | - |
-| layout | Layout direction | Orientation | `horizontal` | - |
-| orientation | Orientation direction | Orientation | `horizontal` | - |
-| vertical | Orientation，Simultaneously existing with `orientation`, `orientation` takes priority | boolean | `false` | - |
-| draggerIcon | custom dragger icon | VueNode | - | 6.0.0 |
-| collapsibleIcon | custom collapsible icon | \{     start?: VueNode     end?: VueNode  \} | - | 6.0.0 |
-| lazy | Lazy mode | boolean | `false` | 5.23.0 |
+### Splitter
 
-### Events {#events}
+#### Property {#splitter-property}
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| collapsibleIcon | Custom collapsible icon | \{ start?: VueNode; end?: VueNode \} | - | 6.0.0 |
+| draggerIcon | Custom dragger icon | VueNode | - | 6.0.0 |
+| lazy | Lazy rendering mode | boolean | false | 5.23.0 |
+| orientation | Layout direction | `vertical` \| `horizontal` | `horizontal` | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| vertical | Orientation, Simultaneously existing with `orientation`, `orientation` takes priority | boolean | false | - |
+
+#### Events {#splitter-events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
-| resizeStart | Callback before dragging starts | (sizes: number[]) =&gt; void | - |
+| collapse | Callback when expanding or collapsing | (collapsed: boolean[], sizes: number[]) =&gt; void | 5.28.0 |
 | resize | Panel size change callback | (sizes: number[]) =&gt; void | - |
 | resizeEnd | Drag end callback | (sizes: number[]) =&gt; void | - |
-| collapse | Callback when expanding or collapsing | (collapsed: boolean[], sizes: number[]) =&gt; void | 5.28.0 |
-| update:collapse | - | (collapsed: boolean[]) =&gt; void | - |
+| resizeStart | Callback before dragging starts | (sizes: number[]) =&gt; void | - |
 
-### Slots {#slots}
+#### Slots {#splitter-slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| draggerIcon | custom dragger icon | () =&gt; any | 6.0.0 |
-| collapsibleIconStart | - | () =&gt; any | - |
-| collapsibleIconEnd | - | () =&gt; any | - |
+| collapsibleIconEnd | Custom collapsible end icon | () =&gt; VueNode | - |
+| collapsibleIconStart | Custom collapsible start icon | () =&gt; VueNode | - |
+| draggerIcon | Custom dragger icon | () =&gt; VueNode | 6.0.0 |
+
+### Splitter.Panel
+
+#### Property {#splitter-panel-property}
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| collapsible | Enable collapsible | boolean \| \{ start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' \} | false | 5.28.0 |
+| defaultSize | Initial panel size, supports px and percentage | number \| string | - | - |
+| max | Maximum threshold, supports px and percentage | number \| string | - | - |
+| min | Minimum threshold, supports px and percentage | number \| string | - | - |
+| resizable | Whether to enable resize | boolean | true | - |
+| size | Controlled panel size, supports px and percentage | number \| string | - | - |
+
+## Semantic DOM
+
+## Design Token

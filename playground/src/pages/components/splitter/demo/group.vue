@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+嵌套使用 Splitter 实现复杂布局。
+</docs>
+
+<docs lang="en-US">
+Nested Splitter for complex layout.
+</docs>
+
 <script setup lang="ts">
 </script>
 

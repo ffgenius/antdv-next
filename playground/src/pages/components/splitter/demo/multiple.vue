@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+多个面板分割。
+</docs>
+
+<docs lang="en-US">
+Multiple panels split.
+</docs>
+
 <script setup lang="ts">
 </script>
 
