@@ -37,15 +37,15 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 #### Breadcrumb
 
-| Property | Description | Type | Default | Version |
-| --- | --- | --- | --- | --- |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: { props })=> Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| dropdownIcon | Custom dropdown icon | VueNode | `<DownOutlined />` | 6.2.0 |
-| itemRender | Custom item renderer, work with vue-router | (route, params, routes, paths) =&gt; VueNode | - | - |
-| params | Routing parameters | object | - | - |
-| items | The routing stack information of router | [ItemType\[\]](#itemtype) | - | 5.3.0 |
-| separator | Custom separator | VueNode | `/` | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: { props })=> Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| Property | Description | Type                                                                                                                                         | Default | Version |
+| --- | --- |----------------------------------------------------------------------------------------------------------------------------------------------| --- | --- |
+| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), string&gt;               | - | - |
+| dropdownIcon | Custom dropdown icon | VueNode                                                                                                                                      | `<DownOutlined />` | 6.2.0 |
+| itemRender | Custom item renderer, work with vue-router | (route, params, routes, paths) =&gt; VueNode                                                                                                 | - | - |
+| params | Routing parameters | object                                                                                                                                       | - | - |
+| items | The routing stack information of router | [ItemType\[\]](#itemtype)                                                                                                                    | - | 5.3.0 |
+| separator | Custom separator | VueNode                                                                                                                                      | `/` | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### ItemType {#itemtype}
 
@@ -85,13 +85,13 @@ const item = {
 
 ### Slots {#slots}
 
-| Slot | Description | Type | Version |
-| --- | --- | --- | --- |
+| Slot | Description | Type                                                                                | Version |
+| --- | --- |-------------------------------------------------------------------------------------| --- |
 | itemRender | Custom item renderer, work with vue-router | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
-| titleRender | Custom title renderer | (params: { item: ItemType, index: number }) =&gt; any | - |
-| separator | Custom separator | () =&gt; any | - |
-| menuLabelRender | Custom menu label renderer | (params: { item: ItemType, index: number, menu: MenuItem }) =&gt; any | - |
-| menuExtraRender | Custom menu extra content renderer | (params: { item: ItemType, index: number, menu: MenuItem }) =&gt; any | - |
+| titleRender | Custom title renderer | (params: \{ item: ItemType, index: number \}) =&gt; any                             | - |
+| separator | Custom separator | () =&gt; any                                                                        | - |
+| menuLabelRender | Custom menu label renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
+| menuExtraRender | Custom menu extra content renderer | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
 
 ### Use with vue-router {#use-with-vue-router}
 

@@ -38,15 +38,15 @@ demo:
 
 #### Breadcrumb
 
-| 属性 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: { props })=> Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| dropdownIcon | 自定义下拉图标 | VueNode | `<DownOutlined />` | 6.2.0 |
-| itemRender | 自定义链接函数，和 vue-router 配置使用 | (route, params, routes, paths) =&gt; VueNode | - | - |
-| params | 路由的参数 | object | - | - |
-| items | 路由栈信息 | [ItemType\[\]](#itemtype) | - | 5.3.0 |
-| separator | 分隔符自定义 | VueNode | `/` | - |
-| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: { props })=> Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| 属性 | 说明 | 类型                                                                                                                                           | 默认值 | 版本 |
+| --- | --- |----------------------------------------------------------------------------------------------------------------------------------------------| --- | --- |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), string&gt;               | - | - |
+| dropdownIcon | 自定义下拉图标 | VueNode                                                                                                                                      | `<DownOutlined />` | 6.2.0 |
+| itemRender | 自定义链接函数，和 vue-router 配置使用 | (route, params, routes, paths) =&gt; VueNode                                                                                                 | - | - |
+| params | 路由的参数 | object                                                                                                                                       | - | - |
+| items | 路由栈信息 | [ItemType\[\]](#itemtype)                                                                                                                    | - | 5.3.0 |
+| separator | 分隔符自定义 | VueNode                                                                                                                                      | `/` | - |
+| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=> Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### ItemType {#itemtype}
 
@@ -86,13 +86,13 @@ const item = {
 
 ### 插槽 {#slots}
 
-| 插槽 | 说明 | 类型 | 版本 |
-| --- | --- | --- | --- |
+| 插槽 | 说明 | 类型                                                                                  | 版本 |
+| --- | --- |-------------------------------------------------------------------------------------| --- |
 | itemRender | 自定义链接函数，和 vue-router 配置使用 | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
-| titleRender | 自定义标题渲染 | (params: { item: ItemType, index: number }) =&gt; any | - |
-| separator | 分隔符自定义 | () =&gt; any | - |
-| menuLabelRender | 自定义菜单标签渲染 | (params: { item: ItemType, index: number, menu: MenuItem }) =&gt; any | - |
-| menuExtraRender | 自定义菜单额外内容渲染 | (params: { item: ItemType, index: number, menu: MenuItem }) =&gt; any | - |
+| titleRender | 自定义标题渲染 | (params: \{ item: ItemType, index: number \}) =&gt; any                             | - |
+| separator | 分隔符自定义 | () =&gt; any                                                                        | - |
+| menuLabelRender | 自定义菜单标签渲染 | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
+| menuExtraRender | 自定义菜单额外内容渲染 | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any             | - |
 
 ### 和 vue-router 配置 {#use-with-vue-router}
 

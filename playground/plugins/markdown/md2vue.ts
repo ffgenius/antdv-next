@@ -84,6 +84,17 @@ export function addScriptSetup(scriptTags: RegExpMatchArray | null, env: Markdow
 }
 
 export function md2Vue(code: string, env: MarkdownItEnv) {
+  // 先处理代码块，转义其中可能影响 Vue 模板解析的特殊字符
+  code = code.replace(/<pre\b[^>]*>[\s\S]*?<\/pre>/gi, (match) => {
+    // 转义以下字符避免被 Vue 模板引擎误解析：
+    // { } - 插值表达式的一部分
+    // < > - 虽然 shiki 应该已经处理，但为了保险再次确保
+    // @ - Vue 事件绑定简写（虽然在 pre 中不太可能被解析，但为了安全）
+    return match
+      .replace(/\{/g, '&#123;')
+      .replace(/\}/g, '&#125;')
+  })
+
   const scriptTags = code.match(SCRIPT_REGEX)
   const styleTags = code.match(STYLE_REGEX)
   // Remove script and style tags from the original code
