@@ -169,7 +169,7 @@ const Steps = defineComponent<
 
     // ============================ Layout ============================
     const breakpoint = useBreakpoint(responsive as any)
-    const xl = computed(() => breakpoint.value?.xl)
+    const xs = computed(() => breakpoint.value?.xs)
 
     const mergedType = computed(() => {
       if (type.value && type.value !== 'default') {
@@ -188,7 +188,7 @@ const Steps = defineComponent<
       if (mergedType.value === 'panel') {
         return 'horizontal'
       }
-      return (responsive.value && xl.value) || nextOrientation === 'vertical' ? 'vertical' : 'horizontal'
+      return (responsive.value && xs.value) || nextOrientation === 'vertical' ? 'vertical' : 'horizontal'
     })
 
     const mergedTitlePlacement = computed(() => {
