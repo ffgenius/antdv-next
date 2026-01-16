@@ -14,9 +14,21 @@ demo:
 
 ## 何时使用 {#when-to-use}
 
+- 对评价进行展示。
+- 对事物进行快速的评级操作。
+
 ## 示例 {#examples}
 
 <demo-group>
+  <demo src="./demo/basic.vue">基本</demo>
+  <demo src="./demo/half.vue">半星</demo>
+  <demo src="./demo/text.vue">文案展现</demo>
+  <demo src="./demo/disabled.vue">只读</demo>
+  <demo src="./demo/clear.vue">清除</demo>
+  <demo src="./demo/character.vue">其他字符</demo>
+  <demo src="./demo/character-function.vue">自定义字符</demo>
+  <demo src="./demo/size.vue">其它尺寸</demo>
+  <demo src="./demo/component-token.vue" debug>组件 Token</demo>
 </demo-group>
 
 ## API
@@ -27,9 +39,16 @@ demo:
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
+| allowClear | 是否允许再次点击后清除 | boolean | true | - |
+| allowHalf | 是否允许半选 | boolean | false | - |
+| autoFocus | 自动获取焦点 | boolean | false | - |
+| character | 自定义字符 | VueNode \| (props: RateProps) => VueNode | `<StarFilled />` | - |
+| count | star 总数 | number | 5 | - |
+| disabled | 只读，无法进行交互 | boolean | false | - |
 | rootClass | - | string | - | - |
 | size | 星星尺寸 | 'small' \| 'middle' \| 'large' | 'middle' | - |
 | tooltips | 自定义每项的提示信息 | (TooltipProps \| string)[] | - | - |
+| value(v-model) | 当前数，受控值 | number | - | - |
 
 ### 事件 {#events}
 

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+支持允许或者禁用清除。
+</docs>
+
+<docs lang="en-US">
+Support set allow to clear star when click again.
+</docs>
+
 <script lang="ts" setup>
 import { ref } from 'vue'
 

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+可以使用 `(RateProps) => ReactNode` 的方式自定义每一个字符。
+</docs>
+
+<docs lang="en-US">
+Can customize each character using `(RateProps) => ReactNode`.
+</docs>
+
 <script lang="ts" setup>
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@antdv-next/icons'
 import { h, ref } from 'vue'

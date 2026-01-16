@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+给评分组件加上文案展示。
+</docs>
+
+<docs lang="en-US">
+Add copywriting in rate components.
+</docs>
+
 <script setup lang="ts">
 import type { RateProps } from 'antdv-next'
 import { ref } from 'vue'
