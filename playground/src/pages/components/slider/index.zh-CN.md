@@ -16,7 +16,7 @@ demo:
 
 当用户需要在数值区间/自定义区间内进行选择时，可为连续或离散值。
 
-## 代码演示 {#examples}
+## 示例 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基本</demo>
@@ -36,6 +36,8 @@ demo:
 </demo-group>
 
 ## API
+
+### 属性 {#property}
 
 通用属性参考：[通用属性](/docs/vue/common-props)
 
