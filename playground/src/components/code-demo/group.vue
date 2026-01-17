@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { VNode } from 'vue'
 import type { DocPage } from '@/composables/doc-page.ts'
-import { computed, inject, onMounted, onUnmounted, ref } from 'vue'
+import { computed, inject, useSlots } from 'vue'
 
 defineOptions({
   name: 'DemoGroup',
@@ -10,82 +11,114 @@ const props = defineProps<{
   cols?: number // 允许外部手动覆盖列数
 }>()
 
-const containerRef = ref<HTMLElement>()
+const slots = useSlots()
 const pageInfo = inject<DocPage | null>('__pageInfo__', null)
 
-// 基础配置
-const gap = 16
-const minColumnWidth = 360 // 每列最小宽度，可根据需求调整
-const dynamicCols = ref(1)
+// 配置
+const gap = 8
 
-// 计算最终列数：如果 Props 有值则固定，否则动态计算
-const finalCols = computed(() => {
+// 从 frontmatter 或 props 获取列数配置 (默认为 1)
+const colCount = computed(() => {
   if (props.cols)
     return props.cols
-  return dynamicCols.value
+  return pageInfo?.frontmatter?.demo?.cols || 1
 })
 
-function updateColumns() {
-  if (!containerRef.value)
-    return
-  const containerWidth = containerRef.value.offsetWidth
+/**
+ * 将子元素分配到多个列中
+ * 采用和 React dumi DumiDemoGrid 相同的策略：
+ * 按顺序将元素依次分配到每列，形成类似蛇形分布
+ * 例如 cols=2，6个元素会分配为: col1=[1,3,5], col2=[2,4,6]
+ */
+const columns = computed(() => {
+  const defaultSlot = slots.default?.()
+  if (!defaultSlot)
+    return []
 
-  // 根据容器宽度计算列数
-  const maxPossibleColumns = Math.floor((containerWidth + gap) / (minColumnWidth + gap))
+  // 获取所有子节点，过滤掉空白节点
+  const children = flattenVNodes(defaultSlot).filter((node) => {
+    // 过滤掉文本节点、注释节点等
+    if (typeof node === 'string' || typeof node === 'number')
+      return false
+    if (node.type === Comment)
+      return false
+    // 过滤掉空白文本
+    if (node.type === Text && typeof node.children === 'string' && !node.children.trim())
+      return false
+    return true
+  })
 
-  // 读取 frontmatter 中的配置作为上限（默认 2）
-  const maxLimit = pageInfo?.frontmatter?.demo?.cols || 1
+  const cols = colCount.value
+  if (cols <= 1) {
+    // 单列模式，所有元素放在一个列中
+    return [children]
+  }
 
-  dynamicCols.value = Math.max(1, Math.min(maxPossibleColumns, maxLimit))
+  // 多列模式：按照 dumi 的方式分配元素
+  // 元素按顺序分配到各列：0->col0, 1->col1, 2->col0, 3->col1...
+  const result: VNode[][] = Array.from({ length: cols }, () => [])
+
+  for (let i = 0; i < children.length; i += cols) {
+    children.slice(i, i + cols).forEach((item, j) => {
+      result[j]!.push(item as VNode)
+    })
+  }
+
+  return result
+})
+
+/**
+ * 展平 VNode 数组，处理 Fragment
+ */
+function flattenVNodes(vnodes: VNode[]): VNode[] {
+  const result: VNode[] = []
+  for (const node of vnodes) {
+    if (node.type === Symbol.for('v-fgt') && Array.isArray(node.children)) {
+      // Fragment 节点，递归展平
+      result.push(...flattenVNodes(node.children as VNode[]))
+    }
+    else {
+      result.push(node)
+    }
+  }
+  return result
 }
 
-const waterfallStyle = computed(() => ({
-  '--columns': finalCols.value,
+const containerStyle = computed(() => ({
   '--gap': `${gap}px`,
 }))
-
-let resizeObserver: ResizeObserver | null = null
-
-onMounted(() => {
-  updateColumns()
-  if (containerRef.value && window.ResizeObserver) {
-    resizeObserver = new ResizeObserver(() => {
-      // 使用 requestAnimationFrame 避免 "ResizeObserver loop limit exceeded" 错误
-      window.requestAnimationFrame(updateColumns)
-    })
-    resizeObserver.observe(containerRef.value)
-  }
-})
-
-onUnmounted(() => {
-  resizeObserver?.disconnect()
-})
 </script>
 
 <template>
   <div
-    ref="containerRef"
     class="ant-doc-demo-group"
-    :style="waterfallStyle"
+    :style="containerStyle"
     :class="pageInfo?.frontmatter?.demo?.class"
   >
-    <slot />
+    <section v-for="(col, index) in columns" :key="index" class="ant-doc-demo-column">
+      <component :is="() => col" />
+    </section>
   </div>
 </template>
 
 <style lang="less" scoped>
 .ant-doc-demo-group {
-  column-count: var(--columns);
-  column-gap: var(--gap);
-  column-fill: balance;
-  width: 100%;
+  display: flex;
+  margin: calc(var(--gap) * -1);
   margin-bottom: 24px;
+}
+
+.ant-doc-demo-column {
+  flex: 1;
+  padding: var(--gap);
+  width: 0; // 配合 flex: 1 确保等宽
 
   :deep(> *) {
-    break-inside: avoid;
-    margin-bottom: var(--gap);
-    display: block;
-    width: 100%;
+    margin-bottom: calc(var(--gap) * 2);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 </style>
