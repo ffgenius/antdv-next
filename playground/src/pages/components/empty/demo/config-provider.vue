@@ -52,5 +52,11 @@ const renderTransferItem = (item: any) => item.title
       <h4>Table</h4>
       <a-table style="margin-top: 8px" :columns="columns" :data-source="[]" />
     </a-space>
+    <!--    <template #renderEmpty> -->
+    <!--      <div style="text-align: center"> -->
+    <!--        <SmileOutlined style="font-size: 20px" /> -->
+    <!--        <p>Data Not Found</p> -->
+    <!--      </div> -->
+    <!--    </template> -->
   </a-config-provider>
 </template>

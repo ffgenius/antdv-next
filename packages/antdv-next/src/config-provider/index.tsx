@@ -249,10 +249,12 @@ const ConfigProvider = defineComponent<
     const context = useConfig()
     const { locale } = useLocaleContext() ?? { }
     return () => {
+      const renderEmpty = slots?.renderEmpty ?? props?.renderEmpty
       return (
         <ProviderChildren
           parentContext={context.value}
           {...props}
+          renderEmpty={renderEmpty}
           legacyLocale={locale?.value}
           v-slots={slots}
         />
