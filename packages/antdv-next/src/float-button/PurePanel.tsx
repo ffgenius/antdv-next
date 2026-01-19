@@ -13,12 +13,16 @@ export interface PureFloatButtonProps extends Omit<FloatButtonProps, 'target'> {
   backTop?: boolean
 }
 
+type ClassNamesType = PureFloatButtonProps['classes'] | FloatButtonGroupProps['classes']
+type StylesType = PureFloatButtonProps['styles'] | FloatButtonGroupProps['styles']
+
 export interface PurePanelProps
   extends Omit<PureFloatButtonProps, 'classes' | 'styles'>,
   Omit<FloatButtonGroupProps, 'classes' | 'styles'> {
+  /** Convert to FloatGroup when configured */
   items?: PureFloatButtonProps[]
-  classes?: FloatButtonProps['classes'] | FloatButtonGroupProps['classes']
-  styles?: FloatButtonProps['styles'] | FloatButtonGroupProps['styles']
+  classes?: ClassNamesType
+  styles?: StylesType
 }
 
 const PureFloatButton = defineComponent<PureFloatButtonProps>(
@@ -27,10 +31,10 @@ const PureFloatButton = defineComponent<PureFloatButtonProps>(
       if (props.backTop) {
         return (
           <BackTop
+            {...attrs}
             {...omit(props, ['backTop'])}
             visibilityHeight={0}
             v-slots={slots}
-            {...attrs}
           />
         )
       }
@@ -68,24 +72,24 @@ const PurePanel = defineComponent<PurePanelProps>(
       if (props.items && props.items.length) {
         return (
           <FloatButtonGroup
+            {...pureAttrs(attrs)}
             {...omit(props, ['items', 'classes', 'styles'])}
             class={clsx((attrs as any).class, pureCls.value)}
             classes={props.classes as FloatButtonGroupProps['classes']}
             styles={props.styles as FloatButtonGroupProps['styles']}
             v-slots={{ default: () => renderItems() }}
-            {...pureAttrs(attrs)}
           />
         )
       }
 
       return (
         <PureFloatButton
+          {...pureAttrs(attrs)}
           {...omit(props, ['items'])}
           class={clsx((attrs as any).class, pureCls.value)}
           classes={props.classes as FloatButtonProps['classes']}
           styles={props.styles as FloatButtonProps['styles']}
           v-slots={slots}
-          {...pureAttrs(attrs)}
         />
       )
     }

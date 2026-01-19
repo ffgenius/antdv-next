@@ -7,7 +7,7 @@ import { getTransitionProps } from '@v-c/util/dist/utils/transition'
 import { omit } from 'es-toolkit'
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef, Transition, watch } from 'vue'
 import getScroll from '../_util/getScroll'
-import { pureAttrs } from '../_util/hooks'
+import { getAttrStyleAndClass, pureAttrs } from '../_util/hooks'
 import scrollTo from '../_util/scrollTo'
 import throttleByAnimationFrame from '../_util/throttleByAnimationFrame'
 import { toPropsRefs } from '../_util/tools'
@@ -125,6 +125,8 @@ const BackTop = defineComponent<
     }
 
     return () => {
+      const { className, style } = getAttrStyleAndClass(attrs)
+
       return (
         <Transition {...transitionProps.value}>
           {{
@@ -135,6 +137,8 @@ const BackTop = defineComponent<
                       {...pureAttrs(attrs)}
                       {...omit(props, ['visibilityHeight', 'target', 'duration'])}
                       ref={floatButtonRef as any}
+                      class={className}
+                      style={style}
                       shape={mergedShape.value}
                       icon={mergedIcon.value as any}
                       onClick={scrollToTop}
