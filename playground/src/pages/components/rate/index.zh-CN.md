@@ -48,13 +48,12 @@ demo:
 | rootClass | - | string | - | - |
 | size | 星星尺寸 | 'small' \| 'middle' \| 'large' | 'middle' | - |
 | tooltips | 自定义每项的提示信息 | (TooltipProps \| string)[] | - | - |
-| value(v-model) | 当前数，受控值 | number | - | - |
+| value| 当前数，受控值 | number | - | - |
 
 ### 事件 {#events}
 
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| update:value | - | (value: number) =&gt; void | - |
 | change | 选择时的回调 | (value: number) =&gt; void | - |
 | hoverChange | 鼠标经过时数值变化的回调 | (value: number) =&gt; void | - |
 | focus | 获取焦点时的回调 | () =&gt; void | - |

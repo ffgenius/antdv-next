@@ -31,7 +31,6 @@ To let user select a value/range from a set of values.
   <demo src="./demo/multiple.vue">Multiple Handles</demo>
   <demo src="./demo/editable.vue">Dynamic edit nodes</demo>
   <demo src="./demo/style-class.vue">Customize Semantic Elements</demo>
-  <demo src="./demo/component-token.vue">Component Token</demo>
 </demo-group>
 
 ## API
@@ -51,5 +50,4 @@ Common props ref：[Common props](/docs/vue/common-props)
 | --- | --- | --- | --- |
 | change | Callback function that is fired when the user changes the slider's value | (value: any) =&gt; void | - |
 | afterChange | - | (value: any) =&gt; void | - |
-| update:value | - | (value: any) =&gt; void | - |
 | changeComplete | Fire when `mouseup` or `keyup` is fired | (value: any) =&gt; void | - |

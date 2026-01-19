@@ -47,13 +47,12 @@ Common props ref：[Common props](/docs/vue/common-props)
 | rootClass | - | string | - | - |
 | size | Star size | 'small' \| 'middle' \| 'large' | 'middle' | - |
 | tooltips | Customize tooltip by each character | (TooltipProps \| string)[] | - | - |
-| value(v-model) | The current value | number | - | - |
+| value | The current value | number | - | - |
 
 ### Events {#events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
-| update:value | - | (value: number) =&gt; void | - |
 | change | Callback when select value | (value: number) =&gt; void | - |
 | hoverChange | Callback when hover item | (value: number) =&gt; void | - |
 | focus | Callback when component get focus | () =&gt; void | - |

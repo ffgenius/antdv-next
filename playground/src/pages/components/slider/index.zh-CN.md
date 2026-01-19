@@ -32,7 +32,6 @@ demo:
   <demo src="./demo/multiple.vue">多点组合</demo>
   <demo src="./demo/editable.vue">动态增减节点</demo>
   <demo src="./demo/style-class.vue">自定义语义结构的样式和类</demo>
-  <demo src="./demo/component-token.vue">组件 Token</demo>
 </demo-group>
 
 ## API
