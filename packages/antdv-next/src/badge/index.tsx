@@ -16,10 +16,11 @@ import {
   useToProps,
 } from '../_util/hooks'
 import { getTransitionProps } from '../_util/motion.ts'
+import { formatUnit } from '../_util/styleUtils.ts'
 import { clsx, getSlotPropsFnRun, toPropsRefs } from '../_util/tools.ts'
 import { useComponentBaseConfig } from '../config-provider/context.ts'
-import Ribbon from './Ribbon.tsx'
 
+import Ribbon from './Ribbon.tsx'
 import ScrollNumber from './ScrollNumber.tsx'
 import useStyle from './style'
 
@@ -155,11 +156,14 @@ const InternalBadge = defineComponent<
       if (!props.offset) {
         return { ...contextStyle.value, ...(attrs.style as CSSProperties) }
       }
+
       const horizontalOffset = Number.parseInt(props.offset[0] as string, 10)
+      const insetInlineEnd = direction.value === 'rtl' ? horizontalOffset : -horizontalOffset
+      const insetInlineEndUnit = formatUnit(insetInlineEnd)!
 
       const offsetStyle: CSSProperties = {
-        marginTop: props.offset[1],
-        insetInlineEnd: direction.value === 'rtl' ? horizontalOffset : -horizontalOffset,
+        marginTop: formatUnit(props.offset[1]),
+        insetInlineEnd: insetInlineEndUnit,
       }
       return { ...contextStyle.value, ...offsetStyle, ...(attrs.style as CSSProperties) }
     })
