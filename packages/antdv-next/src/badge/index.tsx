@@ -265,6 +265,13 @@ const InternalBadge = defineComponent<
       if (props.color && !isInternalColor.value) {
         scrollNumberStyle.background = props.color
       }
+
+      const transitionName = `${prefixCls.value}-zoom`
+      const transitionProps = {
+        enterActiveClass: `${transitionName}-enter ${transitionName}-enter-active`,
+        leaveActiveClass: `${transitionName}-leave ${transitionName}-leave-active`,
+        appearActiveClass: `${transitionName}-appear ${transitionName}-appear-active`,
+      }
       return (
         <span
           {...restAttrs}
@@ -275,7 +282,7 @@ const InternalBadge = defineComponent<
           {children}
           <Transition
             {
-              ...getTransitionProps(`${prefixCls.value}-zoom`, { appear: false })
+              ...getTransitionProps(transitionName, { appear: false, ...transitionProps })
             }
           >
             {{
