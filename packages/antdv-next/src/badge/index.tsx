@@ -8,14 +8,15 @@ import type { PresetColorKey } from '../theme/interface'
 import type { RibbonProps } from './Ribbon.tsx'
 import { classNames } from '@v-c/util'
 import { filterEmpty } from '@v-c/util/dist/props-util'
+import { getTransitionGroupProps } from '@v-c/util/dist/utils/transition'
 import { cloneVNode, computed, defineComponent, shallowRef, Transition, watchEffect } from 'vue'
 import { isPresetColor } from '../_util/colors.ts'
+
 import {
   useMergeSemantic,
   useToArr,
   useToProps,
 } from '../_util/hooks'
-import { getTransitionProps } from '../_util/motion.ts'
 import { formatUnit } from '../_util/styleUtils.ts'
 import { clsx, getSlotPropsFnRun, toPropsRefs } from '../_util/tools.ts'
 import { useComponentBaseConfig } from '../config-provider/context.ts'
@@ -266,12 +267,6 @@ const InternalBadge = defineComponent<
         scrollNumberStyle.background = props.color
       }
 
-      const transitionName = `${prefixCls.value}-zoom`
-      const transitionProps = {
-        enterActiveClass: `${transitionName}-enter ${transitionName}-enter-active`,
-        leaveActiveClass: `${transitionName}-leave ${transitionName}-leave-active`,
-        appearActiveClass: `${transitionName}-appear ${transitionName}-appear-active`,
-      }
       return (
         <span
           {...restAttrs}
@@ -282,7 +277,7 @@ const InternalBadge = defineComponent<
           {children}
           <Transition
             {
-              ...getTransitionProps(transitionName, { appear: false, ...transitionProps })
+              ...getTransitionGroupProps(`${prefixCls.value}-zoom`, { appear: false })
             }
           >
             {{
