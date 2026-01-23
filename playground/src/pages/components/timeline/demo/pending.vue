@@ -7,28 +7,27 @@ Node supports `loading` to indicate loading, and `reverse` property to control t
 </docs>
 
 <script setup lang="ts">
-import { LoadingOutlined } from '@antdv-next/icons'
-import { ref, h } from 'vue'
+import { ref } from 'vue'
 
 const reverse = ref(false)
 
-const handleClick = () => {
+function handleClick() {
   reverse.value = !reverse.value
 }
 
 const items = [
   {
-    children: 'Create a services site 2015-09-01',
+    content: 'Create a services site 2015-09-01',
   },
   {
-    children: 'Solve initial network problems 2015-09-01',
+    content: 'Solve initial network problems 2015-09-01',
   },
   {
-    children: 'Technical testing 2015-09-01',
+    content: 'Technical testing 2015-09-01',
   },
   {
-    children: 'Recording...',
-    dot: () => h(LoadingOutlined)
+    loading: true,
+    content: 'Recording...',
   },
 ]
 </script>

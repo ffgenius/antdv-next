@@ -1,5 +1,5 @@
 import type { InjectionKey, Ref } from 'vue'
-import { inject, ref } from 'vue'
+import { inject, provide, ref } from 'vue'
 
 export interface InternalContextProps {
   rootComponent: string
@@ -7,6 +7,10 @@ export interface InternalContextProps {
 }
 
 const InternalContext: InjectionKey<Ref<InternalContextProps>> = Symbol('InternalContext')
+
+export function provideInternalContext(value: Ref<InternalContextProps>) {
+  provide(InternalContext, value)
+}
 /**
  * When use this context. Will trade as sub component instead of root Steps component.
  */

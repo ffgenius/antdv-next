@@ -13,19 +13,19 @@ const mode = ref<'start' | 'alternate' | 'end'>('start')
 
 const items = [
   {
-    label: '2015-09-01',
-    children: 'Create a services',
+    title: '2015-09-01',
+    content: 'Create a services',
   },
   {
-    label: '2015-09-01 09:12:11',
-    children: 'Solve initial network problems',
+    title: '2015-09-01 09:12:11',
+    content: 'Solve initial network problems',
   },
   {
-    children: 'Technical testing',
+    content: 'Technical testing',
   },
   {
-    label: '2015-09-01 09:12:11',
-    children: 'Network problems being solved',
+    title: '2015-09-01 09:12:11',
+    content: 'Network problems being solved',
   },
 ]
 </script>
@@ -33,10 +33,16 @@ const items = [
 <template>
   <div>
     <a-radio-group v-model:value="mode" :style="{ marginBottom: '20px' }">
-      <a-radio value="start">Start</a-radio>
-      <a-radio value="end">End</a-radio>
-      <a-radio value="alternate">Alternate</a-radio>
+      <a-radio value="start">
+        Start
+      </a-radio>
+      <a-radio value="end">
+        End
+      </a-radio>
+      <a-radio value="alternate">
+        Alternate
+      </a-radio>
     </a-radio-group>
-    <a-timeline :mode="mode === 'end' ? 'right' : mode" :items="items" />
+    <a-timeline :mode="mode" :items="items" />
   </div>
 </template>

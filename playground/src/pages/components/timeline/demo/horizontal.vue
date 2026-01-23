@@ -9,16 +9,16 @@ Horizontal layout.
 <script setup lang="ts">
 const items = [
   {
-    children: 'Init',
+    content: 'Init',
   },
   {
-    children: 'Start',
+    content: 'Start',
   },
   {
-    children: 'Pending',
+    content: 'Pending',
   },
   {
-    children: 'Complete',
+    content: 'Complete',
   },
 ]
 </script>

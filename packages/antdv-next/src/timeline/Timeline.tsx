@@ -6,10 +6,11 @@ import type { StepItem, StepsProps } from '../steps'
 import type { TimelineItemProps } from './TimelineItem.tsx'
 import { classNames as clsx } from '@v-c/util'
 import { omit } from 'es-toolkit'
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useBaseConfig } from '../config-provider/context.ts'
 import useCSSVarCls from '../config-provider/hooks/useCSSVarCls'
 import Steps from '../steps'
+import { provideInternalContext } from '../steps/context.ts'
 import useStyle from './style'
 import useItems from './useItems'
 
@@ -54,7 +55,7 @@ export interface TimelineProps extends ComponentBaseProps {
   pending?: VueNode
   pendingDot?: VueNode
   reverse?: boolean
-  mode?: 'left' | 'alternate' | 'right'
+  mode?: 'left' | 'alternate' | 'right' | 'start' | 'end'
   items?: TimelineItemType[]
   dotRender?: (params: { item: TimelineItemProps, index: number }) => void
   labelRender?: (params: { item: TimelineItemProps, index: number }) => void
@@ -78,6 +79,11 @@ const Timeline = defineComponent<
   SlotsType<TimelineSlots>
 >(
   (props, { slots, attrs }) => {
+    provideInternalContext(ref({
+      rootComponent: 'ol',
+      itemComponent: 'li',
+    }))
+
     const { prefixCls, timeline, direction } = useBaseConfig('timeline', props)
     const items = computed(() => props.items)
     const pending = computed(() => props.pending)
