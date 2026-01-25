@@ -21,4 +21,3 @@ defineOptions({ name: 'Popover' })
   </a-popover>
 </template>
 
-<style scoped></style>

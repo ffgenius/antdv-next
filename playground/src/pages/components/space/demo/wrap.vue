@@ -6,7 +6,6 @@
 Auto wrap.
 </docs>
 
-<script setup lang="ts"></script>
 
 <template>
   <a-space :size="[8, 16]" wrap>

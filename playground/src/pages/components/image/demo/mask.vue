@@ -44,4 +44,3 @@ mask effect, default `blur`.
     </a-image>
 </template>
 
-<style scoped></style>

@@ -22,4 +22,3 @@ The close icon can be customized using `closeIcon`.
   </a-flex>
 </template>
 
-<style scoped></style>

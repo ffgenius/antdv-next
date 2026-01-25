@@ -122,4 +122,3 @@ Generating a set of Tags by array, you can add and remove dynamically.
   </a-flex>
 </template>
 
-<style scoped></style>

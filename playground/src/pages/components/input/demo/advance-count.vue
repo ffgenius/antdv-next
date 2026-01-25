@@ -46,4 +46,3 @@ It is necessary to customize the counting ability in some scenarios (such as emo
   </a-flex>
 </template>
 
-<style scoped></style>

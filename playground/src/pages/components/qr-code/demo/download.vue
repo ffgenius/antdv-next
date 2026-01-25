@@ -50,4 +50,3 @@ function downloadSvgQRCode() {
   </a-space>
 </template>
 
-<style scoped></style>

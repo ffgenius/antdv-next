@@ -40,4 +40,3 @@ You can customize the preview content.
   />
 </template>
 
-<style scoped></style>

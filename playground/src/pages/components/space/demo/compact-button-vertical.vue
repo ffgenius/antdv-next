@@ -6,7 +6,6 @@
 Vertical compact button group.
 </docs>
 
-<script setup lang="ts"></script>
 
 <template>
   <a-space>

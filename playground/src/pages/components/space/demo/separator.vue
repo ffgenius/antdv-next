@@ -6,7 +6,6 @@
 Separator between adjacent components.
 </docs>
 
-<script setup lang="ts"></script>
 
 <template>
   <a-space>

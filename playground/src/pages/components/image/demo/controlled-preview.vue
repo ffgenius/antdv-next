@@ -36,4 +36,3 @@ You can make preview controlled.
   ></a-image>
 </template>
 
-<style scoped></style>

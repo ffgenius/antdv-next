@@ -43,4 +43,3 @@ We preset five different colors, you can set color property such as `success`,`p
   </div>
 </template>
 
-<style scoped></style>

@@ -18,4 +18,3 @@ const level = ref<QRCodeProps['errorLevel']>('M')
   <a-segmented v-model:value="level" :options="['L', 'M', 'Q', 'H']" />
 </template>
 
-<style scoped></style>

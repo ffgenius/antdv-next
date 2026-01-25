@@ -6,7 +6,6 @@
 Vertical spacing between adjacent components.
 </docs>
 
-<script setup lang="ts"></script>
 
 <template>
   <a-space orientation="vertical" size="middle" style="display: flex;">

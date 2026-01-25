@@ -68,4 +68,3 @@ Responsive configuration enables perfect presentation on small screen devices.
   </a-descriptions>
 </template>
 
-<style scoped></style>
