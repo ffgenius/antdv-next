@@ -48,12 +48,13 @@ catalogs:
     typedoc: ^0.28.16
     typescript: ~5.9.3
     unocss: ^66.5.10
+    unplugin-vue: ^7.1.1
     vite: ^8.0.0-beta.8
     vite-plugin-dayjs: ^1.0.1
     vite-plugin-inspect: ^11.3.3
     vite-plugin-tsx-resolve-types: ^1.0.1-beta.5
     vitest: ^4.0.17
-    vue-tsc: ^3.1.8
+    vue-tsc: ^3.2.0
   docs:
     '@mdit-vue/plugin-frontmatter': 3.0.2
     '@mdit-vue/plugin-headers': ^3.0.2
@@ -101,6 +102,8 @@ catalogs:
     vanilla-tilt: ^1.8.1
     vue: ^3.5.27
     vue-router: ^4.6.4
+  ts:
+    typescript: 5.4.5
   types:
     '@types/cli-progress': ^3.11.6
     '@types/fs-extra': ^11.0.4

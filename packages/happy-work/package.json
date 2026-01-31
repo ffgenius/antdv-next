@@ -1,0 +1,36 @@
+{
+  "name": "@antdv-next/happy-work-theme",
+  "type": "module",
+  "version": "1.0.0-rc.1",
+  "description": "Happy Work theme for antdv-next with joyful dot animations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antdv-next/antdv-next.git"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown"
+  },
+  "peerDependencies": {
+    "antdv-next": "workspace:*",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@ant-design/fast-color": "catalog:prod"
+  },
+  "devDependencies": {
+    "typescript": "catalog:ts",
+    "unplugin-vue": "catalog:dev",
+    "vue-tsc": "catalog:dev"
+  }
+}

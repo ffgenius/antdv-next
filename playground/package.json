@@ -11,6 +11,7 @@
     "@ant-design/colors": "catalog:prod",
     "@ant-design/fast-color": "catalog:prod",
     "@antdv-next/cssinjs": "workspace:^",
+    "@antdv-next/happy-work-theme": "workspace:^",
     "@antdv-next/icons": "workspace:^",
     "@antdv-next/unocss": "workspace:^",
     "@vueuse/core": "catalog:prod",
