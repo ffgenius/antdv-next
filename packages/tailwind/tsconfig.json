@@ -1,7 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "composite": true,
     /* Linting */
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -9,5 +8,8 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noUncheckedSideEffectImports": true
-  }
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
 }
