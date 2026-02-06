@@ -10,8 +10,8 @@ const menuLocales = {
 
   docs: {
     vue: {
-      introduce: 'Ant Design of Vue',
-      use: '使用',
+      introduce: '介绍',
+      use: '如何使用',
       gettingStarted: '快速上手',
       ai: 'AI',
       llms: 'LLMs.txt',
@@ -24,8 +24,8 @@ const menuLocales = {
       migration: '迁移',
       migrationAntdvNext: '从 Antdv 迁移到 Antdv Next',
       other: '其他',
-      awesome: 'Awesome',
-      contributing: '如何贡献',
+      awesome: '社区生态',
+      contributing: '贡献指南',
       faq: '常见问题',
     },
   },
