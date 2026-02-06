@@ -1,11 +1,17 @@
-// Docs menu locales
-import type { MenuDocs } from '@/locales/en-US/menu-docs'
+const menuLocales = {
+  header: {
+    docs: {
+      vue: '研发',
+    },
+    components: '组件',
+    blog: '博客',
+    resources: '资源',
+  },
 
-const menuDocs: MenuDocs = {
   docs: {
     vue: {
-      introduce: '介绍',
-      use: '如何使用',
+      introduce: 'Ant Design of Vue',
+      use: '使用',
       gettingStarted: '快速上手',
       ai: 'AI',
       llms: 'LLMs.txt',
@@ -18,14 +24,23 @@ const menuDocs: MenuDocs = {
       migration: '迁移',
       migrationAntdvNext: '从 Antdv 迁移到 Antdv Next',
       other: '其他',
-      awesome: '社区生态',
-      contributing: '贡献指南',
+      awesome: 'Awesome',
+      contributing: '如何贡献',
       faq: '常见问题',
     },
   },
+
   blog: {
     antdvNextRelease: 'Antdv Next 1.0 发布',
   },
 } as const
 
-export default menuDocs
+export default menuLocales
+
+type DeepStringLeaves<T>
+  = T extends string ? string
+    : T extends Record<PropertyKey, any>
+      ? { [K in keyof T]: DeepStringLeaves<T[K]> }
+      : never
+
+export type Menu = DeepStringLeaves<typeof menuLocales>
