@@ -33,7 +33,6 @@ import { formatColorValue, genAlphaColor, generateColor, getColorAlpha } from '.
 
 const defaults = {
   trigger: 'click',
-  arrow: true,
   placement: 'bottomLeft',
   autoAdjustOverflow: true,
   disabledAlpha: false,
@@ -56,7 +55,8 @@ const ColorPicker = defineComponent<
       classes: contextClassNames,
       styles: contextStyles,
       arrow: contextArrow,
-    } = useComponentBaseConfig('colorPicker', props, [], 'color-picker')
+    } = useComponentBaseConfig('colorPicker', props, ['arrow'], 'color-picker')
+
     const {
       size: customizeSize,
       classes,

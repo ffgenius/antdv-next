@@ -242,6 +242,7 @@ const InternalTooltip = defineComponent<
         motion,
         destroyOnHidden,
         openClass,
+        arrow: _arrow,
         ...restProps
       } = props
       const title = getSlotPropsFnRun(slots, props, 'title')

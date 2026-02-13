@@ -17,10 +17,15 @@ function useMergedArrow(
   return computed(() => {
     const arrowConfig = toConfig(providedArrow?.value)
     const contextArrowConfig = toConfig(providedContextArrow?.value)
+
+    const finalShow = providedArrow?.value !== undefined
+      ? (arrowConfig.show ?? true)
+      : (contextArrowConfig.show ?? true)
+
     return {
       ...contextArrowConfig,
       ...arrowConfig,
-      show: arrowConfig.show ?? contextArrowConfig.show ?? true,
+      show: finalShow,
     }
   })
 }
