@@ -78,7 +78,6 @@ const useCartoonTheme: UseTheme = () => {
     },
     colorPicker: {
       arrow: false,
-      classes: {},
     },
     popover: {
       arrow: false,

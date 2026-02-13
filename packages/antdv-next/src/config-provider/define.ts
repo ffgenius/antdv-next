@@ -8,6 +8,7 @@ import type {
   CardConfig,
   CascaderConfig,
   CollapseConfig,
+  ColorPickerConfig,
   ComponentStyleConfig,
   CSPConfig,
   DatePickerConfig,
@@ -139,7 +140,7 @@ export interface ConfigProviderProps {
   upload?: UploadConfig
   notification?: NotificationConfig
   tree?: ComponentStyleConfig
-  colorPicker?: ComponentStyleConfig
+  colorPicker?: ColorPickerConfig
   datePicker?: DatePickerConfig
   rangePicker?: RangePickerConfig
   dropdown?: ComponentStyleConfig
