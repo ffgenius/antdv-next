@@ -11,8 +11,8 @@
     "node": ">=22.18.0"
   },
   "scripts": {
-    "dev": "turbo dev --filter playground",
-    "dev:play": "pnpm -F @antdv-next/playground dev",
+    "dev": "turbo dev --filter docs",
+    "dev:play": "pnpm -F playground dev",
     "lint": "eslint . --fix",
     "ci:publish": "pnpm publish -r --access=public",
     "ci:lint": "eslint",
@@ -20,7 +20,7 @@
     "bump": "pnpm changeset version",
     "build:antdv": "pnpm -F antdv-next build",
     "build:llm": "pnpm -F antdv-next run build:llm",
-    "build:search": "pnpm -F playground run gen:search",
+    "build:search": "pnpm -F docs run gen:search",
     "build:p": "run-p build:llm build:search",
     "build": "run-s build:p build:site",
     "build:site": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build --filter playground",

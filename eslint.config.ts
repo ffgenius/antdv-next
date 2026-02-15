@@ -20,15 +20,16 @@ const config = antfu(
   },
   {
     ignores: [
-      'packages/icons/src/icons',
-      'playground/src/assets/antd.css',
+      'docs/icons/src/icons',
+      'docs/src/assets/antd.css',
     ],
   },
   {
     files: [
-      'playground/**/*',
+      'docs/**/*',
       'tests/**/*',
-      'packages/**/tests/**/*',
+      'docs/**/tests/**/*',
+      'playground',
     ],
     rules: {
       'no-console': 0,

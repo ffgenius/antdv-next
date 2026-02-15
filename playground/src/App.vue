@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { useCopyCode } from '@/components/code-demo/copy-code'
-import BaseConfig from './layouts/base/index.vue'
-
-useCopyCode()
+import { JavaScriptOutlined } from '@antdv-next/icons'
+import { version } from 'antdv-next'
 </script>
 
 <template>
-  <BaseConfig>
-    <router-view />
-  </BaseConfig>
+  <main>
+    <header class="header">
+      antdv next version {{ version }}
+      <JavaScriptOutlined />
+    </header>
+    <body>
+      <a-button type="primary">
+        test
+      </a-button>
+    </body>
+  </main>
 </template>
 
-<style>
-#app {
-  width: 100%;
-  height: 100%;
+<style scoped>
+.header {
+  text-align: center;
 }
 </style>

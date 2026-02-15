@@ -574,6 +574,175 @@ importers:
         specifier: catalog:dev
         version: 3.1.8(typescript@5.9.3)
 
+  docs:
+    dependencies:
+      '@ant-design/colors':
+        specifier: catalog:prod
+        version: 7.2.1
+      '@ant-design/fast-color':
+        specifier: catalog:prod
+        version: 3.0.0
+      '@antdv-next/cssinjs':
+        specifier: workspace:^
+        version: link:../packages/cssinjs
+      '@antdv-next/happy-work-theme':
+        specifier: catalog:prod
+        version: 1.0.0(antdv-next@1.0.3(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
+      '@antdv-next/icons':
+        specifier: catalog:prod
+        version: 1.0.1(vue@3.5.27(typescript@5.9.3))
+      '@antdv-next/unocss':
+        specifier: catalog:docs
+        version: 1.0.0(unocss@66.5.10(postcss@8.5.6)(vite@8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
+      '@vueuse/core':
+        specifier: catalog:prod
+        version: 14.2.0(vue@3.5.27(typescript@5.9.3))
+      dayjs:
+        specifier: catalog:prod
+        version: 1.11.19
+      es-toolkit:
+        specifier: catalog:prod
+        version: 1.43.0
+      flexsearch:
+        specifier: 'catalog:'
+        version: 0.8.212
+      pinia:
+        specifier: catalog:prod
+        version: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
+      tslib:
+        specifier: catalog:prod
+        version: 2.8.1
+      vanilla-tilt:
+        specifier: catalog:prod
+        version: 1.8.1
+      vue:
+        specifier: catalog:prod
+        version: 3.5.27(typescript@5.9.3)
+      vue-router:
+        specifier: catalog:prod
+        version: 4.6.4(vue@3.5.27(typescript@5.9.3))
+    devDependencies:
+      '@mdit-vue/plugin-frontmatter':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@mdit-vue/plugin-headers':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@mdit-vue/plugin-title':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@mdit-vue/plugin-toc':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@mdit-vue/shared':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@mdit-vue/types':
+        specifier: catalog:docs
+        version: 3.0.2
+      '@shikijs/langs':
+        specifier: catalog:docs
+        version: 3.22.0
+      '@shikijs/markdown-it':
+        specifier: catalog:docs
+        version: 3.20.0(markdown-it-async@2.2.0)
+      '@shikijs/themes':
+        specifier: catalog:docs
+        version: 3.22.0
+      '@shikijs/transformers':
+        specifier: catalog:docs
+        version: 3.20.0
+      '@shikijs/twoslash':
+        specifier: catalog:docs
+        version: 3.20.0(typescript@5.9.3)
+      '@stackblitz/sdk':
+        specifier: catalog:docs
+        version: 1.11.0
+      '@types/markdown-it':
+        specifier: catalog:types
+        version: 14.1.2
+      '@types/markdown-it-attrs':
+        specifier: catalog:types
+        version: 4.1.3
+      '@types/markdown-it-container':
+        specifier: catalog:types
+        version: 2.0.11
+      '@types/picomatch':
+        specifier: catalog:types
+        version: 4.0.2
+      dom-serializer:
+        specifier: catalog:prod
+        version: 2.0.0
+      domhandler:
+        specifier: catalog:prod
+        version: 5.0.3
+      htmlparser2:
+        specifier: catalog:prod
+        version: 10.0.0
+      less:
+        specifier: catalog:dev
+        version: 4.5.1
+      lru-cache:
+        specifier: catalog:prod
+        version: 11.2.4
+      lunar-typescript:
+        specifier: catalog:dev
+        version: 1.8.6
+      markdown-it:
+        specifier: catalog:docs
+        version: 14.1.0
+      markdown-it-anchor:
+        specifier: catalog:docs
+        version: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0)
+      markdown-it-async:
+        specifier: catalog:docs
+        version: 2.2.0
+      markdown-it-attrs:
+        specifier: catalog:docs
+        version: 4.3.1(markdown-it@14.1.0)
+      markdown-it-container:
+        specifier: catalog:docs
+        version: 4.0.0
+      markdown-it-emoji:
+        specifier: catalog:docs
+        version: 3.0.0
+      markdown-it-ts:
+        specifier: catalog:docs
+        version: 0.0.2
+      mlly:
+        specifier: catalog:prod
+        version: 1.8.0
+      nanoid:
+        specifier: catalog:prod
+        version: 5.1.6
+      pathe:
+        specifier: catalog:prod
+        version: 2.0.3
+      picomatch:
+        specifier: catalog:prod
+        version: 4.0.3
+      postcss:
+        specifier: catalog:dev
+        version: 8.5.6
+      postcss-selector-parser:
+        specifier: catalog:dev
+        version: 7.1.1
+      shiki:
+        specifier: catalog:docs
+        version: 3.20.0
+      tinyglobby:
+        specifier: catalog:dev
+        version: 0.2.15
+      unocss:
+        specifier: catalog:dev
+        version: 66.5.10(postcss@8.5.6)(vite@8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))
+      vite:
+        specifier: ^8.0.0-beta.11
+        version: 8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
+      vite-plugin-dayjs:
+        specifier: catalog:dev
+        version: 1.0.1
+
   packages/antdv-next:
     dependencies:
       '@ant-design/colors':
@@ -765,7 +934,7 @@ importers:
         specifier: catalog:prod
         version: 3.5.27(typescript@5.9.3)
 
-  packages/playground:
+  playground:
     dependencies:
       '@antdv-next/icons':
         specifier: catalog:prod
@@ -802,175 +971,6 @@ importers:
         specifier: catalog:dev
         version: 3.1.8(typescript@5.9.3)
 
-  playground:
-    dependencies:
-      '@ant-design/colors':
-        specifier: catalog:prod
-        version: 7.2.1
-      '@ant-design/fast-color':
-        specifier: catalog:prod
-        version: 3.0.0
-      '@antdv-next/cssinjs':
-        specifier: workspace:^
-        version: link:../packages/cssinjs
-      '@antdv-next/happy-work-theme':
-        specifier: catalog:prod
-        version: 1.0.0(antdv-next@1.0.0-rc.8(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))
-      '@antdv-next/icons':
-        specifier: catalog:prod
-        version: 1.0.1(vue@3.5.27(typescript@5.9.3))
-      '@antdv-next/unocss':
-        specifier: catalog:docs
-        version: 1.0.0(unocss@66.5.10(postcss@8.5.6)(vite@8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)))
-      '@vueuse/core':
-        specifier: catalog:prod
-        version: 14.2.0(vue@3.5.27(typescript@5.9.3))
-      dayjs:
-        specifier: catalog:prod
-        version: 1.11.19
-      es-toolkit:
-        specifier: catalog:prod
-        version: 1.43.0
-      flexsearch:
-        specifier: 'catalog:'
-        version: 0.8.212
-      pinia:
-        specifier: catalog:prod
-        version: 3.0.4(typescript@5.9.3)(vue@3.5.27(typescript@5.9.3))
-      tslib:
-        specifier: catalog:prod
-        version: 2.8.1
-      vanilla-tilt:
-        specifier: catalog:prod
-        version: 1.8.1
-      vue:
-        specifier: catalog:prod
-        version: 3.5.27(typescript@5.9.3)
-      vue-router:
-        specifier: catalog:prod
-        version: 4.6.4(vue@3.5.27(typescript@5.9.3))
-    devDependencies:
-      '@mdit-vue/plugin-frontmatter':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@mdit-vue/plugin-headers':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@mdit-vue/plugin-title':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@mdit-vue/plugin-toc':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@mdit-vue/shared':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@mdit-vue/types':
-        specifier: catalog:docs
-        version: 3.0.2
-      '@shikijs/langs':
-        specifier: catalog:docs
-        version: 3.22.0
-      '@shikijs/markdown-it':
-        specifier: catalog:docs
-        version: 3.20.0(markdown-it-async@2.2.0)
-      '@shikijs/themes':
-        specifier: catalog:docs
-        version: 3.22.0
-      '@shikijs/transformers':
-        specifier: catalog:docs
-        version: 3.20.0
-      '@shikijs/twoslash':
-        specifier: catalog:docs
-        version: 3.20.0(typescript@5.9.3)
-      '@stackblitz/sdk':
-        specifier: catalog:docs
-        version: 1.11.0
-      '@types/markdown-it':
-        specifier: catalog:types
-        version: 14.1.2
-      '@types/markdown-it-attrs':
-        specifier: catalog:types
-        version: 4.1.3
-      '@types/markdown-it-container':
-        specifier: catalog:types
-        version: 2.0.11
-      '@types/picomatch':
-        specifier: catalog:types
-        version: 4.0.2
-      dom-serializer:
-        specifier: catalog:prod
-        version: 2.0.0
-      domhandler:
-        specifier: catalog:prod
-        version: 5.0.3
-      htmlparser2:
-        specifier: catalog:prod
-        version: 10.0.0
-      less:
-        specifier: catalog:dev
-        version: 4.5.1
-      lru-cache:
-        specifier: catalog:prod
-        version: 11.2.4
-      lunar-typescript:
-        specifier: catalog:dev
-        version: 1.8.6
-      markdown-it:
-        specifier: catalog:docs
-        version: 14.1.0
-      markdown-it-anchor:
-        specifier: catalog:docs
-        version: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0)
-      markdown-it-async:
-        specifier: catalog:docs
-        version: 2.2.0
-      markdown-it-attrs:
-        specifier: catalog:docs
-        version: 4.3.1(markdown-it@14.1.0)
-      markdown-it-container:
-        specifier: catalog:docs
-        version: 4.0.0
-      markdown-it-emoji:
-        specifier: catalog:docs
-        version: 3.0.0
-      markdown-it-ts:
-        specifier: catalog:docs
-        version: 0.0.2
-      mlly:
-        specifier: catalog:prod
-        version: 1.8.0
-      nanoid:
-        specifier: catalog:prod
-        version: 5.1.6
-      pathe:
-        specifier: catalog:prod
-        version: 2.0.3
-      picomatch:
-        specifier: catalog:prod
-        version: 4.0.3
-      postcss:
-        specifier: catalog:dev
-        version: 8.5.6
-      postcss-selector-parser:
-        specifier: catalog:dev
-        version: 7.1.1
-      shiki:
-        specifier: catalog:docs
-        version: 3.20.0
-      tinyglobby:
-        specifier: catalog:dev
-        version: 0.2.15
-      unocss:
-        specifier: catalog:dev
-        version: 66.5.10(postcss@8.5.6)(vite@8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2))
-      vite:
-        specifier: ^8.0.0-beta.11
-        version: 8.0.0-beta.11(@types/node@25.0.10)(esbuild@0.27.1)(jiti@2.6.1)(less@4.5.1)(terser@5.44.1)(tsx@4.21.0)(yaml@2.8.2)
-      vite-plugin-dayjs:
-        specifier: catalog:dev
-        version: 1.0.1
-
 packages:
 
   '@acemir/cssom@0.9.29':
@@ -993,8 +993,8 @@ packages:
   '@ant-design/icons-svg@4.4.2':
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
 
-  '@antdv-next/cssinjs@1.0.0-rc.3':
-    resolution: {integrity: sha512-BBwTFRwtHW1rVcBPkD7KL5naRbIE/QsSLK/zf5avzb3OPvaZcgLHB9RfjNgddGJRV4ZImnnmONU7CPSEKIn1ow==}
+  '@antdv-next/cssinjs@1.0.2':
+    resolution: {integrity: sha512-hTaqKE4XzDWu4+wM3eBe0XS4eEn8VMPXIhrdZq9WVI0Pt9CJcHUOv34XiEBxpQKnw2n+XaKzI3tf9vAJt/LeyQ==}
     peerDependencies:
       vue: '>=3.2.0'
 
@@ -2620,26 +2620,13 @@ packages:
       vue:
         optional: true
 
-  '@vueuse/core@14.1.0':
-    resolution: {integrity: sha512-rgBinKs07hAYyPF834mDTigH7BtPqvZ3Pryuzt1SD/lg5wEcWqvwzXXYGEDb2/cP0Sj5zSvHl3WkmMELr5kfWw==}
-    peerDependencies:
-      vue: ^3.5.0
-
   '@vueuse/core@14.2.0':
     resolution: {integrity: sha512-tpjzVl7KCQNVd/qcaCE9XbejL38V6KJAEq/tVXj7mDPtl6JtzmUdnXelSS+ULRkkrDgzYVK7EerQJvd2jR794Q==}
     peerDependencies:
       vue: ^3.5.0
 
-  '@vueuse/metadata@14.1.0':
-    resolution: {integrity: sha512-7hK4g015rWn2PhKcZ99NyT+ZD9sbwm7SGvp7k+k+rKGWnLjS/oQozoIZzWfCewSUeBmnJkIb+CNr7Zc/EyRnnA==}
-
   '@vueuse/metadata@14.2.0':
     resolution: {integrity: sha512-i3axTGjU8b13FtyR4Keeama+43iD+BwX9C2TmzBVKqjSHArF03hjkp2SBZ1m72Jk2UtrX0aYCugBq2R1fhkuAQ==}
-
-  '@vueuse/shared@14.1.0':
-    resolution: {integrity: sha512-EcKxtYvn6gx1F8z9J5/rsg3+lTQnvOruQd8fUecW99DCK04BkWD7z5KQ/wTAx+DazyoEE9dJt/zV8OIEQbM6kw==}
-    peerDependencies:
-      vue: ^3.5.0
 
   '@vueuse/shared@14.2.0':
     resolution: {integrity: sha512-Z0bmluZTlAXgUcJ4uAFaML16JcD8V0QG00Db3quR642I99JXIDRa2MI2LGxiLVhcBjVnL1jOzIvT5TT2lqJlkA==}
@@ -2706,8 +2693,8 @@ packages:
     resolution: {integrity: sha512-HqZ5rWlFjGiV0tDm3UxxgNRqsOTniqoKZu0pIAfh7TZQMGuZK+hH0drySty0si0QXj1ieop4+SkSfPZBPPkHig==}
     engines: {node: '>=14'}
 
-  antdv-next@1.0.0-rc.8:
-    resolution: {integrity: sha512-SatYKOk+tmGrti2Mxgkx3hPRFvf99fh/z+kSt317V4EgH0lyIIaZFThnX9DhhZuqCexaCBm8UvCM68QJQC9dzQ==}
+  antdv-next@1.0.3:
+    resolution: {integrity: sha512-xK5V8gX14BVO7pF+z0UVvsxiNCZ8qr73XHFpAp500tmQ7V2Ntp70HrkEki9ZUq/JexRMD1YqZO7RV3MH9/6TaA==}
 
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
@@ -5741,20 +5728,19 @@ snapshots:
 
   '@ant-design/icons-svg@4.4.2': {}
 
-  '@antdv-next/cssinjs@1.0.0-rc.3(vue@3.5.27(typescript@5.9.3))':
+  '@antdv-next/cssinjs@1.0.2(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       '@v-c/util': 1.0.14(vue@3.5.27(typescript@5.9.3))
       csstype: 3.2.3
-      defu: 6.1.4
       stylis: 4.3.6
       vue: 3.5.27(typescript@5.9.3)
 
-  '@antdv-next/happy-work-theme@1.0.0(antdv-next@1.0.0-rc.8(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
+  '@antdv-next/happy-work-theme@1.0.0(antdv-next@1.0.3(vue@3.5.27(typescript@5.9.3)))(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@ant-design/fast-color': 3.0.0
-      antdv-next: 1.0.0-rc.8(vue@3.5.27(typescript@5.9.3))
+      antdv-next: 1.0.3(vue@3.5.27(typescript@5.9.3))
       vue: 3.5.27(typescript@5.9.3)
 
   '@antdv-next/icons@1.0.1(vue@3.5.27(typescript@5.9.3))':
@@ -5974,7 +5960,7 @@ snapshots:
 
   '@babel/parser@7.27.7':
     dependencies:
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
 
   '@babel/parser@7.28.5':
     dependencies:
@@ -6021,9 +6007,9 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.27.1
       '@babel/generator': 7.28.5
-      '@babel/parser': 7.28.5
+      '@babel/parser': 7.29.0
       '@babel/template': 7.27.2
-      '@babel/types': 7.28.5
+      '@babel/types': 7.29.0
       debug: 4.4.3
       globals: 11.12.0
     transitivePeerDependencies:
@@ -7640,13 +7626,6 @@ snapshots:
       typescript: 5.9.3
       vue: 3.5.27(typescript@5.9.3)
 
-  '@vueuse/core@14.1.0(vue@3.5.27(typescript@5.9.3))':
-    dependencies:
-      '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 14.1.0
-      '@vueuse/shared': 14.1.0(vue@3.5.27(typescript@5.9.3))
-      vue: 3.5.27(typescript@5.9.3)
-
   '@vueuse/core@14.2.0(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
@@ -7654,13 +7633,7 @@ snapshots:
       '@vueuse/shared': 14.2.0(vue@3.5.27(typescript@5.9.3))
       vue: 3.5.27(typescript@5.9.3)
 
-  '@vueuse/metadata@14.1.0': {}
-
   '@vueuse/metadata@14.2.0': {}
-
-  '@vueuse/shared@14.1.0(vue@3.5.27(typescript@5.9.3))':
-    dependencies:
-      vue: 3.5.27(typescript@5.9.3)
 
   '@vueuse/shared@14.2.0(vue@3.5.27(typescript@5.9.3))':
     dependencies:
@@ -7709,11 +7682,11 @@ snapshots:
 
   ansis@4.2.0: {}
 
-  antdv-next@1.0.0-rc.8(vue@3.5.27(typescript@5.9.3)):
+  antdv-next@1.0.3(vue@3.5.27(typescript@5.9.3)):
     dependencies:
       '@ant-design/colors': 7.2.1
       '@ant-design/fast-color': 3.0.0
-      '@antdv-next/cssinjs': 1.0.0-rc.3(vue@3.5.27(typescript@5.9.3))
+      '@antdv-next/cssinjs': 1.0.2(vue@3.5.27(typescript@5.9.3))
       '@antdv-next/icons': 1.0.1(vue@3.5.27(typescript@5.9.3))
       '@v-c/async-validator': 1.0.0
       '@v-c/cascader': 1.0.1(vue@3.5.27(typescript@5.9.3))
@@ -7753,9 +7726,8 @@ snapshots:
       '@v-c/upload': 1.0.0(vue@3.5.27(typescript@5.9.3))
       '@v-c/util': 1.0.14(vue@3.5.27(typescript@5.9.3))
       '@v-c/virtual-list': 1.0.6(vue@3.5.27(typescript@5.9.3))
-      '@vueuse/core': 14.1.0(vue@3.5.27(typescript@5.9.3))
+      '@vueuse/core': 14.2.0(vue@3.5.27(typescript@5.9.3))
       dayjs: 1.11.19
-      defu: 6.1.4
       es-toolkit: 1.43.0
       scroll-into-view-if-needed: 3.1.0
       throttle-debounce: 5.0.2

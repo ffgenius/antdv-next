@@ -75,6 +75,7 @@
   "unpkg": "dist/antd.js",
   "jsdelivr": "dist/antd.js",
   "files": [
+    "README.md",
     "dist",
     "global.d.ts",
     "package.json",
