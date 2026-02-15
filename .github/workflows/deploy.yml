@@ -44,7 +44,7 @@ jobs:
         run: |
           pnpm build
           rm -rf dist
-          cp -r playground/dist dist
+          cp -r docs/dist dist
 
       - name: Scp dir to server
         uses: appleboy/scp-action@v1
